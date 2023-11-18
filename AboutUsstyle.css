@@ -1,0 +1,105 @@
+body{
+    background: linear-gradient(to right,rgb(236, 219, 219), rgb(32, 99, 180));
+    margin: 0;
+    font-family: sans-serif;
+}
+
+
+
+header {
+    background-color: rgb(32, 99, 180);
+    opacity: 0.8;
+    margin: 0 auto;
+    padding: 10px 0;
+    position: relative; /* Ensure proper stacking context */
+    z-index: 1; /* Ensure the header stays above the pseudo-element */
+}
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+ul {
+    list-style: none;
+    display: flex;
+}
+
+ul li {
+    margin-right: 20px;
+    
+}
+a {
+    
+    text-decoration: none;
+    color: rgb(236, 219, 219);
+    font-weight: bold;
+    font-size: 16px;
+    font-family: 'Dancing Script', cursive;
+    font-family: 'Pacifico', cursive;
+    font-family: 'REM', sans-serif;
+}
+.search-bar {
+    display: flex;
+  
+}
+
+input {
+    padding: 8px;
+    border: none;
+    border-radius: 5px 0 0 5px;
+}
+
+button {
+    padding: 8px 15px;
+    background-color: rgb(17, 0, 128);
+    color: #fff;
+    border: none;
+    border-radius: 0 5px 5px 0;
+    cursor: pointer;
+}
+li{
+    list-style: none;
+}
+.box p{
+    display: flex;
+    width: 50%;
+    height: 50%;
+    
+   
+    
+}
+
+
+
+
+footer {
+    background: linear-gradient(to top,rgb(219, 205, 205), rgb(32, 99, 180));
+    padding: 20px;
+  text-align: center;
+  height: 200px;
+}
+
+.contact-info, .follow-us, .copyright {
+  margin-bottom: 20px;
+ 
+}
+
+.contact-info a {
+  color: #337ab7;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+.social-icons img {
+  width: 25px;
+  height: 25px;
+}
+main{
+    
+    
+}
