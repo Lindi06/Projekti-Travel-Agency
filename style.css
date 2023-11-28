@@ -461,3 +461,148 @@ button:hover{
      }
 
      /* ---------*/
+
+         
+     
+.adventure{
+    margin-top: 70px;
+    background-color: #2980b9;
+    height: 30vh;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+   
+    
+    margin: 30px;
+    border-radius: 16px;
+   
+       
+   }
+   
+   .adventure h2{
+       color: white;
+       font-size: 30px;
+       font-weight: bold;
+       font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+   }
+   
+   .adventure p{
+       color: white;
+       font-size: 15px;
+       font-weight: bold;
+       font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+   }
+   
+   .adventure img{
+       width: auto;
+       height: 90px;
+       border-radius: 50%;
+   }
+   
+   
+   
+   @media only screen and (max-width:700px) {
+       .adventure{
+           display: flex;
+           flex-direction: column;
+           justify-content: space-evenly;
+           align-items: center;
+           text-align: center;
+       }
+   
+     
+   }
+   
+   
+   
+   .why-book-section{
+       display: flex;
+       justify-content: center;
+       text-align: center;
+   }
+   
+   .why-book{
+       display: flex;
+       flex-direction: column;
+   }
+   
+   .why-book .title{
+       font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+       color: #2980b9;
+       text-transform: uppercase;
+       font-size: 20px;
+       margin-top: 40px;
+   }
+   
+   .why-book ul{
+       display: flex;
+      
+       justify-content: space-evenly;
+       flex-wrap: wrap;
+   }
+   
+   .why-book ul li{
+       width: 350px;
+       height: 200px;
+       background-color: #a9d0eb;
+       list-style: none;
+       display: flex;
+      margin-top: 25px;
+       border-radius: 10px;
+       justify-content: center;
+       align-items: center;
+       flex-direction: column;
+       gap: 20px;
+       cursor: pointer;
+   
+   }
+   
+   .why-book ul li:hover{
+       width: 380px;
+       height: 220px;
+       background-color: #5296c7;
+       transition: ease-in-out 0.5s;
+     
+   }
+   
+   .why-book ul li img{
+       width: auto;
+       height: 60px;
+       border-radius: 50%;
+   }
+   
+   .why-book ul li h2{
+       font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+       color: white;
+       font-size: 28px;
+   }
+   
+   .why-book ul li p{
+       font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+       color: white;
+       font-size: 15px;
+       
+   }
+   
+   .why-book-layout{
+       display: flex;
+       gap: 20px;
+       padding: 0 20px 10px 20px;
+   }
+   
+   
+   
+   
+   
+   @media only screen and (max-width:700px) {
+   
+       .why-book ul{
+           display: flex;
+           flex-direction: column;
+       }
+   
+     
+   
+   }
+   
+   /* L */
