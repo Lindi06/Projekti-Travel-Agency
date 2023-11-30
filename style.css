@@ -606,3 +606,364 @@ button:hover{
    }
    
    /* L */
+
+
+
+   .we-love-section{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 80px;
+
+}
+
+.we-love-section h2{
+    font-size: 40px;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    color: #2980b9;
+}
+
+.we-love{
+    display: flex;
+    
+}
+
+.we-love ul{
+    display: flex;
+    margin-top: 100px;
+    justify-content: center;
+    align-items: center;
+    gap: 50px;
+}
+
+.we-love ul li{
+    list-style: none;
+    width: 200px;
+    height: 250px;
+  
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    background-color: white;
+    cursor: pointer;
+   
+}
+
+
+
+
+.we-love ul li img{
+    width: auto;
+    height: 100px;
+    border-radius: 50%;
+    margin-bottom: 40px;
+}
+
+.we-love ul li img:hover{
+    width: auto;
+    height: 120px;
+}
+
+.we-love ul li h2{
+    font-size: 40px;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+.we-love ul li h6{
+    font: 26px;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    color: rgb(159, 158, 158);
+}
+
+
+@media only screen and (max-width:700px) {
+    .we-love ul{
+        display: flex;
+        margin-top: 100px;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
+
+
+
+}
+
+
+
+
+
+
+.reviews-section{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    margin-top: 100px;
+    background-color: #d2ebfc;
+
+}
+
+
+.reviews-text{
+    display: flex;
+    flex-direction: column;
+   
+
+}
+
+.reviews-text h2{
+    font-size: 40px;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    color: #2980b9;
+    margin-bottom: 40px;
+}
+.reviews-text a{
+    background-color: #2980b9;
+    padding: 10px;
+    width: 80px;
+    margin-top: 20px;
+    color: white;
+    text-decoration: none;
+    border-radius: 4px;
+}
+
+.reviews-text p{
+    font-size: 20px;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    color: #5296c7;
+    width: 300px;
+}
+
+.reviews-cards ul{
+    display: flex;
+    gap: 20px;
+    flex-direction: column;
+    padding: 40px;
+   
+
+
+}
+
+.reviews-cards ul li{
+    list-style: none;
+    width: 300px;
+    height: 100px;
+    background-color: white;
+    box-shadow:  2px 2px 5px #2980b9;
+    display: flex;
+    border-radius: 20px;
+}
+
+
+.reviews-cards ul li img{
+    width: auto;
+    height: 80px;
+    border-radius: 50%;
+    background-color: white;
+}
+
+.review-h2-p{
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+}
+
+.review-h2-p p{
+    font-size: 13px;
+    
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    color: #5296c7;
+
+}
+
+.review-h2-p h2{
+    font-size: 20px;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    color: #2980b9;
+
+}
+
+
+
+@media only screen and (max-width:700px) {
+    .reviews-section{
+        display: flex;
+        flex-direction: column-reverse;
+        justify-content: center;
+        align-items: center;
+        padding-bottom: 30px;
+    
+    }
+
+
+
+
+}
+
+
+.footer-section{
+    background-color:#2980b9;
+
+}
+
+.footer{
+    display: flex;
+    flex-direction: column;
+ 
+}
+
+.footer ul{
+    display: flex;
+    justify-content: space-evenly;
+    list-style: none;
+    padding: 50px;
+    align-items: center;
+    gap: 10px;
+   
+
+}
+
+.footer ul li {
+    width: 280px;   
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 400px;
+    text-align: center;
+    overflow: hidden;
+    gap: 30px;
+   
+   
+}
+
+
+
+.footer ul li img{
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+}
+
+
+.footer ul li p{
+    width: 200px;
+    color: white;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    
+}
+
+
+.footer ul li h2{
+    color: white;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+.footer ul li h4 a{
+    text-decoration: none;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    color: whitesmoke;
+}
+
+.footer ul li h4 a:hover{
+    background-color: white;
+    color: #2980b9;
+    padding: 5px;
+    border-radius: 6px;
+}
+
+
+.footer ul li input{
+    padding: 6px;
+    text-align: center;
+    border-radius: 50px;
+    border: 0;
+    outline: 0;
+    box-shadow: 2px 2px 2px white;
+}
+
+.footer ul li button{
+    background-color: white;
+    color: #2980b9;
+    width: 70px;
+    height: 40px;
+    
+  
+
+}
+.social-links{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    
+
+}
+
+
+
+.footer .social-links img{
+    width: 50px;
+    height: 50px;
+}
+
+
+.footer .contact-links{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: start;
+    margin-left: 20px;
+
+}
+
+.footer .contact-links img{
+    width: auto;
+    height: 50px;
+}
+
+
+.footer .contact-div{
+    display: flex;
+    gap: 15px;
+}
+
+.footer .phone-contact{
+    display: flex;
+    flex-direction: column;
+}
+
+.footer .email-contact{
+    display: flex;
+    flex-direction: column;
+}
+
+.footer .location-contact{
+    display: flex;
+    flex-direction: column;
+}
+
+
+
+
+.contact-div h3{
+    color: white;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+.contact-div h4{
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-size: 14px;
+    color: #a9d0eb;
+}
+
+
+@media only screen and (max-width:700px) {
+
+    .footer ul{
+        display: flex;
+        flex-direction: column;
+    }
+}
