@@ -26,3 +26,9 @@ let password = document.getElementById('sign-in-password').value;
 }
 
 
+<<<<<<< HEAD
+=======
+loginBtn.addEventListener('click', () => {
+    container.classList.remove("active");
+});
+>>>>>>> 06da2a29ec5ed53245f8c7f0c04ed3e89f707fa7
