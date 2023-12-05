@@ -44,7 +44,7 @@
 .navbar #menu-icon{
     width: 25px;
     cursor: pointer;
-    display: none;
+    display:none;
 
 }
 
@@ -175,7 +175,7 @@ button:hover{
     }
 
     nav #menu-icon{
-        display: block;
+        display: inline;
     }
 
     #list{

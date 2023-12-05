@@ -1,11 +1,28 @@
-const container = document.getElementById('container');
-const registerBtn = document.getElementById('register');
-const loginBtn = document.getElementById('login');
 
-registerBtn.addEventListener('click', () => {
-    container.classList.add("active");
-});
+let emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+let passwordRegex = /(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$/;
 
-loginBtn.addEventListener('click', () => {
-    container.classList.remove("active");
-});
+    
+function validateForm(){
+
+
+let email = document.getElementById('sign-in-email').value;
+let password = document.getElementById('sign-in-password').value;
+
+    if (!emailRegex.test(email)) {
+        alert('email invalid')
+        return;
+    }
+
+    if (!passwordRegex.test(password)) {
+        alert('password invalid')
+        return;
+    }
+
+    else{
+
+    alert('Forma është dorëzuar me sukses!');
+  }
+}
+
+
