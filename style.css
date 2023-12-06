@@ -144,8 +144,6 @@ button:hover{
 
 
 
-
-
    
    
 
@@ -153,6 +151,10 @@ button:hover{
 
 
 @media only screen and (max-width:700px) {
+
+    .landpage{
+        height: 50vh;
+    }
 
     nav ul{
         width: 100%;
@@ -175,7 +177,7 @@ button:hover{
     }
 
     nav #menu-icon{
-        display: inline;
+        display: none;
     }
 
     #list{

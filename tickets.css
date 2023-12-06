@@ -6,7 +6,11 @@ body {
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background: linear-gradient(to left, #00416c,#40a0e0 );
+    background-image: url("photo/banner.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-color: hsla(200, 100%, 8%, 0.5);
+    background-blend-mode: overlay;
   }
 
   .container {
