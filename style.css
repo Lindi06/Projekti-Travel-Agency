@@ -153,32 +153,10 @@ button:hover{
 @media only screen and (max-width:700px) {
 
     .landpage{
-        height: 50vh;
+        height: 70vh;
     }
 
-    nav ul{
-        width: 100%;
-        background: linear-gradient(to left,  rgb(214, 213, 213) ,white);
-        position: absolute;
-        top: 75px;
-        right: 0;
-        z-index: 2;
-    }
 
-    nav ul li{
-        display: block;
-        margin-top: 10px;
-        margin-bottom: 10px;
-    }
-
-    nav ul li a{
-        color: white;
-
-    }
-
-    nav #menu-icon{
-        display: none;
-    }
 
     #list{
         overflow: hidden;

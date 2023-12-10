@@ -40,7 +40,7 @@ function validateForm(){
 
         else{
 
-        alert('Forma është dorëzuar me sukses!');
+        alert('Login successful!');
       }
     }
 
@@ -67,7 +67,7 @@ function validateForm(){
 
     else{
 
-    alert('Jeni regjistruar me sukses');
+    alert('Sign up successful! ');
   }
 
     }
