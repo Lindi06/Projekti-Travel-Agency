@@ -22,6 +22,9 @@ if(isset($_POST["signin"])){
     $result = $conn->query($sql);
 
     if ($result->num_rows > 0) {
+        $user = $result->fetch_assoc();
+        $_SESSION['email'] = $email;
+        $_SESSION['emri'] = $user['emri'];
         header("Location: index.php");
         exit();
     } else {

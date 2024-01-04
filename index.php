@@ -1,3 +1,25 @@
+
+<?php
+session_start();
+
+
+$emri = ''; 
+
+if (isset($_SESSION['emri'])) {
+    $loggedIn = true;
+} else {
+    $loggedIn = false;
+    
+}
+
+if (isset($_POST["logout"])) {
+    session_destroy();
+    header("Location: index.php");
+    exit;
+}
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -19,7 +41,9 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500&family=Pacifico&family=REM:ital,wght@1,300&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
+
 <body>
 
 
@@ -31,8 +55,40 @@
                 <li><a href="">Home</a></li>
                 <li><a href="tickets.php">Tickets</a></li>
                 <li><a href="AboutUs.php">About us</a></li>
-                <li><a href="">Support</a></li>
-                <li><a href="SignIn.php">Log in</a></li>
+                <li><a href="">Blog</a></li>
+                <li><a href="">Destinations</a></li>
+
+               <?php if (!$loggedIn) { ?>
+           
+            <li><a href="SignIn.php">Log in</a></li>
+        <?php } ?>
+
+                <?php if ($loggedIn) { ?>
+                    <li><a href="profile.php">
+                            <i style="background-color: grey; border-radius:50%; padding:8px; color:white" class="fa fa-user"></i>  
+                            <?php 
+                            if($loggedIn){
+                              echo  $_SESSION["emri"]; 
+                            }
+                            else if($loggedIn==false){
+                              echo "<h4> no user </h4>";
+
+                            }
+                            
+                            ?>
+                     
+                        </a>
+                    </li>
+                <?php } ?>
+
+              
+                <?php if ($loggedIn) { ?>
+                    <li >
+                        <form method="post" action="index.php">
+                            <button type="submit"  name="logout" style="padding: 10px 20px;">Log out</button>
+                        </form>
+                    </li>
+                <?php } ?>
                
             </ul>
             <img src="photo/menuicon.png" id="menu-icon" onclick="menu()">

@@ -23,6 +23,7 @@ if(isset($_POST["signup"])){
     $result = $conn->query($sql);
 
     if ($result) {
+        $_SESSION['emri'] = $emri;
         header("Location: index.php");
         exit();
     } else {
