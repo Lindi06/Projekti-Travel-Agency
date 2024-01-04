@@ -29,10 +29,10 @@
             <nav>
             <ul id="list">
                 <li><a href="">Home</a></li>
-                <li><a href="tickets.html">Tickets</a></li>
-                <li><a href="AboutUs.html">About us</a></li>
+                <li><a href="tickets.php">Tickets</a></li>
+                <li><a href="AboutUs.php">About us</a></li>
                 <li><a href="">Support</a></li>
-                <li><a href="SignIn.html">Log in</a></li>
+                <li><a href="SignIn.php">Log in</a></li>
                
             </ul>
             <img src="photo/menuicon.png" id="menu-icon" onclick="menu()">
