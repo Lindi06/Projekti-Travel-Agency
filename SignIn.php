@@ -1,11 +1,9 @@
-
 <?php
 session_start();
 
 if(isset($_POST["signin"])){
     $email=$_POST["email"];
     $password=$_POST["password"];
-
 
     $servername = "localhost";
     $usernameDB = "root";
@@ -22,26 +20,29 @@ if(isset($_POST["signin"])){
     $result = $conn->query($sql);
 
     if ($result->num_rows > 0) {
-        $user = $result->fetch_assoc();
-        $_SESSION['email'] = $email;
-        $_SESSION['emri'] = $user['emri'];
-        header("Location: index.php");
-        exit();
+        $row = $result->fetch_assoc();
+        $_SESSION['emri'] = $row['emri'];
+        if ($row['role'] == 'admin') { 
+            $_SESSION['role'] = 'admin';
+            header("Location: admin_dashboard.php");
+            exit();
+        } else {
+            $_SESSION['role'] = 'user';
+            header("Location: user_dashboard.php");
+            exit();
+        }
     } else {
         echo '<script>alert("Wrong email or password")</script>';
-        
- }
+    }
+
     $conn->close();
-
-
-
-
 }
-
-
-
-
 ?>
+
+
+
+
+
 
 
 <!DOCTYPE html>

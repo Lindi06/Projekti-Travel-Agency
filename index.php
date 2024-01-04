@@ -17,6 +17,13 @@ if (isset($_POST["logout"])) {
     header("Location: index.php");
     exit;
 }
+
+
+if (isset($_SESSION['role'])) {
+  $user_role = $_SESSION['role'];
+} else {
+  $user_role = 'user'; 
+}
 ?>
 
 
@@ -63,6 +70,10 @@ if (isset($_POST["logout"])) {
             <li><a href="SignIn.php">Log in</a></li>
         <?php } ?>
 
+        <?php if ($user_role === 'admin') { ?>
+                <li><a href="admin_dashboard.php">Dashboard</a></li>
+            <?php } ?>
+
                 <?php if ($loggedIn) { ?>
                     <li><a href="profile.php">
                             <i style="background-color: grey; border-radius:50%; padding:8px; color:white" class="fa fa-user"></i>  
@@ -80,15 +91,17 @@ if (isset($_POST["logout"])) {
                         </a>
                     </li>
                 <?php } ?>
-
+              
               
                 <?php if ($loggedIn) { ?>
                     <li >
                         <form method="post" action="index.php">
-                            <button type="submit"  name="logout" style="padding: 10px 20px;">Log out</button>
+                            <button type="submit"  name="logout" style="font-weight: bolder; font-size:15px">Log out</button>
                         </form>
                     </li>
                 <?php } ?>
+
+
                
             </ul>
             <img src="photo/menuicon.png" id="menu-icon" onclick="menu()">
