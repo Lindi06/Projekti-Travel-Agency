@@ -11,7 +11,7 @@ if(isset($_POST["signup"])){
     $servername = "localhost";
     $usernameDB = "root";
     $passwordDB = "";
-    $dbname = "loginform";
+    $dbname = "travel";
 
     $conn = new mysqli($servername, $usernameDB, $passwordDB, $dbname);
 

@@ -9,7 +9,7 @@ if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin') {
 $servername = "localhost";
 $username = "root";
 $password = ""; 
-$dbname = "loginform"; 
+$dbname = "travel"; 
 
 
 $conn = new mysqli($servername, $username, $password, $dbname);
@@ -56,7 +56,7 @@ $conn->close();
 </head>
 
 <body>
-
+<div class="container">
     <div class="sidebar">
         <h2>Admin Panel</h2>
         <ul>
@@ -80,6 +80,7 @@ $conn->close();
 
             <canvas id="userChart"></canvas>
         </div>
+    </div>
     </div>
     <script>
     var ctx = document.getElementById('userChart').getContext('2d');

@@ -3,6 +3,7 @@
 session_start();
 
 
+
 $emri = ''; 
 
 if (isset($_SESSION['emri'])) {
@@ -20,7 +21,7 @@ if (isset($_POST["logout"])) {
 
 
 if (isset($_SESSION['role'])) {
-  $user_role = $_SESSION['role'];
+  $_SESSION['role']= $user_role = $_SESSION['role'];
 } else {
   $user_role = 'user'; 
 }
@@ -63,7 +64,7 @@ if (isset($_SESSION['role'])) {
                 <li><a href="tickets.php">Tickets</a></li>
                 <li><a href="AboutUs.php">About us</a></li>
                 <li><a href="">Blog</a></li>
-                <li><a href="">Destinations</a></li>
+                <li><a href="destinations.php">Destinations</a></li>
 
                <?php if (!$loggedIn) { ?>
            

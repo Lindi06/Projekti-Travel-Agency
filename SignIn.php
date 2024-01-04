@@ -8,7 +8,7 @@ if(isset($_POST["signin"])){
     $servername = "localhost";
     $usernameDB = "root";
     $passwordDB = "";
-    $dbname = "loginform";
+    $dbname = "travel";
 
     $conn = new mysqli($servername, $usernameDB, $passwordDB, $dbname);
 

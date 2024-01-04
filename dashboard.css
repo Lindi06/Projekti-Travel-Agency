@@ -5,6 +5,11 @@ body {
     margin: 0;
     padding: 0;
     background-color: #f4f4f4;
+    min-height: 50vh;
+   
+}
+
+.container{
     display: flex;
 }
 
@@ -104,3 +109,4 @@ body {
     width: 80%;
     margin: 20px auto;
 }
+
