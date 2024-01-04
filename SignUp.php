@@ -1,4 +1,46 @@
 
+<?php
+session_start();
+
+if(isset($_POST["signup"])){
+    $email=$_POST["email"];
+    $password=$_POST["password"];
+    $emri=$_POST["name"];
+
+
+    $servername = "localhost";
+    $usernameDB = "root";
+    $passwordDB = "";
+    $dbname = "loginform";
+
+    $conn = new mysqli($servername, $usernameDB, $passwordDB, $dbname);
+
+    if ($conn->connect_error) {
+        die("No connection: " . $conn->connect_error);
+    }
+
+    $sql = "INSERT INTO login (emri, email, password) VALUES ('$emri', '$email', '$password')";
+    $result = $conn->query($sql);
+
+    if ($result) {
+        header("Location: index.php");
+        exit();
+    } else {
+        echo '<script>alert("Something went wrong")</script>';
+        
+ }
+    $conn->close();
+
+
+
+
+}
+
+
+
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -12,7 +54,7 @@
 <body>
     <div class="container" id="container">
         <div class="form-container sign-up">
-            <form>
+            <form action="SignUp.php" method="Post">
                 <h1>Create Account</h1>
                 <div class="social-icons">
                     <img src="./photo/instagram.png" alt="">
@@ -21,15 +63,15 @@
                 </div>
                 <span>or use your email for registration</span>
                 <div class="input-container">
-                    <input type="text" placeholder="Name" id="sign-up-name">
+                    <input type="text" name="name" placeholder="Name" id="sign-up-name">
                 </div>
                 <div class="input-container">
-                    <input type="email" placeholder="Email" id="sign-up-email">
+                    <input type="email" name="email" placeholder="Email" id="sign-up-email">
                 </div>
                 <div class="input-container">
-                    <input type="password" placeholder="Password" id="sign-up-password">
+                    <input type="password" name="password" placeholder="Password" id="sign-up-password">
                 </div>
-                <button onclick="validateSignUp()">Sign Up</button>
+                <button name="signup" onclick="validateSignUp()">Sign Up</button>
                 <a href="SignIn.php">Already have an account? Sign In</a>
             </form>
         </div>
