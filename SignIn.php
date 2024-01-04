@@ -1,4 +1,45 @@
 
+<?php
+session_start();
+
+if(isset($_POST["signin"])){
+    $email=$_POST["email"];
+    $password=$_POST["password"];
+
+
+    $servername = "localhost";
+    $usernameDB = "root";
+    $passwordDB = "";
+    $dbname = "loginform";
+
+    $conn = new mysqli($servername, $usernameDB, $passwordDB, $dbname);
+
+    if ($conn->connect_error) {
+        die("No connection: " . $conn->connect_error);
+    }
+
+    $sql = "SELECT * FROM login WHERE email='$email' AND password='$password'";
+    $result = $conn->query($sql);
+
+    if ($result->num_rows > 0) {
+        header("Location: index.php");
+        exit();
+    } else {
+        echo '<script>alert("Wrong email or password")</script>';
+        
+ }
+    $conn->close();
+
+
+
+
+}
+
+
+
+
+?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -13,7 +54,7 @@
 <body>
     <div class="container" id="container">
         <div class="form-container sign-in">
-            <form>
+            <form action="SignIn.php" method="post">
                 <h1>Sign In</h1>
                 <div class="social-icons">
                     <img src="./photo/instagram.png" alt="">
@@ -21,13 +62,13 @@
                     <img src="./photo/twitter.png" alt="">
                 </div>
                 <span>or use your email and password</span>
-                <input type="email" placeholder="Email" id="sign-in-email">
+                <input type="email" name="email" placeholder="Email" id="sign-in-email">
       
-                <input type="password" placeholder="Password" id="sign-in-password">
+                <input type="password" name="password" placeholder="Password" id="sign-in-password">
            
                 <a href="SignUp.php">Don't have an account? Sign Up</a>
                 <a href="#">Forgot Your Password?</a>
-                <button onclick="validateForm()">Sign In</button>
+                <button name="signin" onclick="validateForm()">Sign In</button>
             </form>
         </div>
     </div>
@@ -45,16 +86,16 @@ function validateForm(){
     let password = document.getElementById('sign-in-password').value;
 
     if (!emailRegex.test(email)) {
-        alert('Invalid email format');
+        console.log('Invalid email format');
         return;
     }
 
     if (!passwordRegex.test(password)) {
-        alert('Password must have at least 8 characters including one uppercase, one lowercase, one number, and one special character');
+        console.log('Password must have at least 8 characters including one uppercase, one lowercase, one number, and one special character');
         return;
     }
 
-    alert('Login successful!');
+     console.log('Login successful!');
 }
     </script>
 </body>
