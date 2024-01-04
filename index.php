@@ -71,7 +71,7 @@ if (isset($_SESSION['role'])) {
         <?php } ?>
 
         <?php if ($user_role === 'admin') { ?>
-                <li><a href="admin_dashboard.php">Dashboard</a></li>
+                <li><a href="dashboard.php">Dashboard</a></li>
             <?php } ?>
 
                 <?php if ($loggedIn) { ?>

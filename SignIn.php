@@ -24,7 +24,7 @@ if(isset($_POST["signin"])){
         $_SESSION['emri'] = $row['emri'];
         if ($row['role'] == 'admin') { 
             $_SESSION['role'] = 'admin';
-            header("Location: admin_dashboard.php");
+            header("Location: dashboard.php");
             exit();
         } else {
             $_SESSION['role'] = 'user';
