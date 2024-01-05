@@ -106,21 +106,21 @@ $conn->close();
         <h1>Available Destinations</h1>
         <div class="card-deck">
       
-            <?php foreach ($destinations as $destination) { ?>
-                <div class="card">
-                        <img src="<?php echo $destination['photo_path']; ?>" alt="Destination Image">
-                        <div class="card-body">
-                            <h5><?php echo $destination['name']; ?></h5>
-                            <p>
-                                Location: <?php echo $destination['location']; ?><br>
-                                Description: <?php echo $destination['description']; ?><br>
-                                Price: $<?php echo $destination['price']; ?><br>
-                            </p>
-                            <a class="btn-primary" href="booking.php">BOOK NOW</a>
-                        </div>
-                    </a>
-                </div>
-            <?php } ?>
+      <?php  foreach ($destinations as $destination) { ?>
+    <div class="card">
+        <img src="<?php echo $destination['photo_path']; ?>" alt="Destination Image">
+        <div class="card-body">
+            <h5><?php echo $destination['name']; ?></h5>
+            <p>
+                Location: <?php echo $destination['location']; ?><br><br>
+                Description: <?php echo $destination['description']; ?><br><br>
+                Price: $<?php echo $destination['price']; ?><br>
+            </p>
+            <span>Added by: <?php echo $destination['added_by']; ?></span>
+            <a class="btn-primary" href="booking.php">BOOK NOW</a>
+        </div>
+    </div>
+<?php } ?>
         </div>
         
        

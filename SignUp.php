@@ -2,38 +2,60 @@
 <?php
 session_start();
 
-if(isset($_POST["signup"])){
-    $email=$_POST["email"];
-    $password=$_POST["password"];
-    $emri=$_POST["name"];
 
 
-    $servername = "localhost";
-    $usernameDB = "root";
-    $passwordDB = "";
-    $dbname = "travel";
+class Database{
+    private $servername = "localhost";
+    private $usernameDB = "root";
+    private $passwordDB = "";
+    private $dbname = "travel";
+    private $conn;
 
-    $conn = new mysqli($servername, $usernameDB, $passwordDB, $dbname);
 
-    if ($conn->connect_error) {
-        die("No connection: " . $conn->connect_error);
+    public function __construct()
+    {
+       $this->conn = new mysqli($this->servername,$this->usernameDB, $this->passwordDB, $this->dbname);
+
+    if ($this->conn->connect_error) {
+        die("No connection: " . $this->conn->connect_error);
     }
 
-    $sql = "INSERT INTO login (emri, email, password) VALUES ('$emri', '$email', '$password')";
-    $result = $conn->query($sql);
-
-    if ($result) {
-        $_SESSION['emri'] = $emri;
-        header("Location: index.php");
-        exit();
-    } else {
-        echo '<script>alert("Something went wrong")</script>';
         
+    }
+
+
+    public function SignUp($emri,$email,$password){
+        $sql = "INSERT INTO login (emri, email, password) VALUES ('$emri', '$email', '$password')";
+        $result = $this->conn->query($sql);
+    
+        if ($result) {
+            $_SESSION['emri'] = $emri;
+            header("Location: index.php");
+            exit();
+        } else {
+            echo '<script>alert("Something went wrong")</script>';
+            
+     }
+
+
+    }
+   
+    public function connectionClose(){
+    $this->conn->close();
+     }
+
  }
-    $conn->close();
 
 
+    if(isset($_POST["signup"])){
+        $email=$_POST["email"];
+        $password=$_POST["password"];
+        $emri=$_POST["name"];
 
+        $db=new Database();
+        $db->SignUp($emri,$email,$password);
+        $db->connectionClose();
+    
 
 }
 

@@ -1,45 +1,48 @@
 <?php
 session_start();
 
-if(isset($_POST["signin"])){
-    $email=$_POST["email"];
-    $password=$_POST["password"];
+class Database {
+    private $servername = "localhost";
+    private $usernameDB = "root";
+    private $passwordDB = "";
+    private $dbname = "travel";
+    private $conn;
 
-    $servername = "localhost";
-    $usernameDB = "root";
-    $passwordDB = "";
-    $dbname = "travel";
-
-    $conn = new mysqli($servername, $usernameDB, $passwordDB, $dbname);
-
-    if ($conn->connect_error) {
-        die("No connection: " . $conn->connect_error);
-    }
-
-    $sql = "SELECT * FROM login WHERE email='$email' AND password='$password'";
-    $result = $conn->query($sql);
-
-    if ($result->num_rows > 0) {
-        $row = $result->fetch_assoc();
-        $_SESSION['emri'] = $row['emri'];
-        if ($row['role'] == 'admin') { 
-            $_SESSION['role'] = 'admin';
-            header("Location: dashboard.php");
-            exit();
-        } else {
-            $_SESSION['role'] = 'user';
-            header("Location: user_dashboard.php");
-            exit();
+    public function __construct() {
+        $this->conn = new mysqli($this->servername, $this->usernameDB, $this->passwordDB, $this->dbname);
+        if ($this->conn->connect_error) {
+            die("No connection: " . $this->conn->connect_error);
         }
-    } else {
-        echo '<script>alert("Wrong email or password")</script>';
     }
 
-    $conn->close();
+    public function checkLogin($email, $password) {
+        $sql = "SELECT * FROM login WHERE email='$email' AND password='$password'";
+        $result = $this->conn->query($sql);
+
+        if ($result->num_rows > 0) {
+            $row = $result->fetch_assoc();
+            $_SESSION['emri'] = $row['emri'];
+            header("Location:index.php");
+           
+        } else {
+            echo '<script>alert("Wrong email or password")</script>';
+        }
+    }
+
+    public function closeConnection() {
+        $this->conn->close();
+    }
+}
+
+if (isset($_POST["signin"])) {
+    $email = $_POST["email"];
+    $password = $_POST["password"];
+
+    $db = new Database();
+    $db->checkLogin($email, $password);
+    $db->closeConnection();
 }
 ?>
-
-
 
 
 
