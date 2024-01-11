@@ -1,9 +1,10 @@
 <?php 
 
+
 include 'dbConnect.php';
 
 if(isset($_POST['submit'])){
-  $destination=$_POST['destination_id'];
+  $_SESSION["destination_id"]= $destination=$_POST['destination_id'];
   $date=$_POST['departure-date'];
   $passengers=$_POST['passengers'];
   $tickets=$_POST['tickets'];
@@ -25,7 +26,67 @@ if(isset($_POST['submit'])){
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Flight Booking System</title>
-    <link rel="stylesheet" href="tickets.css">
+    <style>
+      body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color:rgba(173, 216, 230, 0.3);
+  }
+
+  .container {
+    width: 400px;
+    background-color: lightblue;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+
+  .booking-form {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+  }
+
+  .form-group {
+    margin-bottom: 15px;
+  }
+
+  label,h1 {
+    font-weight: bold;
+    color: #2980b9;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  }
+
+
+  input[type="text"],
+  input[type="date"],
+  input[type="number"],
+  select {
+    padding: 8px;
+    width: 100%;
+    margin-top: 5px;
+  }
+
+  button {
+    background-color: #3498db;
+    color: #fff;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 100%;
+    margin-top: 10px;
+  }
+
+  button:hover {
+    background-color: #2980b9;
+  }
+    </style>
 </head>
 <body>
     <div class="container">

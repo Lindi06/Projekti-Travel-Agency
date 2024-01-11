@@ -55,10 +55,10 @@ $conn->close();
     <title>Add Destination</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
             margin: 0;
             padding: 20px;
-            background-color: #f4f4f4;
+            background-color:rgba(173, 216, 230, 0.3);
         }
 
         h1 {
@@ -69,7 +69,7 @@ $conn->close();
         form {
             width: 50%;
             margin: 0 auto;
-            background-color: #fff;
+            background-color: lightblue;
             padding: 20px;
             border-radius: 8px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);

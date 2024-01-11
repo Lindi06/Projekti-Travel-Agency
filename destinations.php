@@ -13,6 +13,10 @@ if ($result->num_rows > 0) {
         $destinations[] = $row;
     }
 }
+
+
+
+
 $conn->close();
 ?>
 
@@ -22,16 +26,18 @@ $conn->close();
     <style>
       
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #f4f4f4;
+            background-color:rgba(173, 216, 230, 0.3);
+            color: #2980b9;
         }
 
         .container {
             width: 80%;
             margin: auto;
             padding-top: 50px;
+           
         }
 
         h1 {
@@ -43,6 +49,7 @@ $conn->close();
             display: flex;
             flex-wrap: wrap;
             justify-content: space-between;
+
         }
 
         .card {
@@ -51,6 +58,10 @@ $conn->close();
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             border-radius: 8px;
             overflow: hidden;
+            background-color: rgba(135, 206, 250, 0.3);
+            display:  flex;
+            flex-direction: column;
+        
         }
 
         .card img {
@@ -84,10 +95,31 @@ $conn->close();
             border: none;
             border-radius: 5px;
             cursor: pointer;
+            padding-right: 10px;
         }
 
         .btn-primary:hover {
             background-color: #2980b9;
+        }
+
+        .btn-second{
+            display: block;
+            width: 100%;
+            text-align: center;
+            padding: 10px;
+            background-color: #e74c3c;
+            color: #fff;
+            text-decoration: none;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            padding-right: 10px;
+
+        }
+
+        .btns form{
+            display: flex;
+           gap: 10px;
         }
     </style>
 </head>
@@ -107,7 +139,16 @@ $conn->close();
                 Price: $<?php echo $destination['price']; ?><br>
             </p>
             <span>Added by: <?php echo $destination['added_by']; ?></span>
+
+        <div class="btns">
+            <form action="" method="post">
             <a class="btn-primary" href="tickets.php">BOOK NOW</a>
+            <?php if (isset($_SESSION['role']) && $_SESSION['role'] === 'admin') { ?>
+                <button class="btn-second" type="submit" name="delete">Delete</button>
+            <?php }?>
+            </form>
+            </div>
+        
         </div>
     </div>
 <?php } ?>
@@ -117,6 +158,7 @@ $conn->close();
 
         <?php if (isset($_SESSION['role']) && $_SESSION['role'] === 'admin') { ?>
             <a class="btn-primary" href="add-destination.php">ADD A DESTINATION</a>
+         
         <?php } ?>
         
     </div>

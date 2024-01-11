@@ -42,21 +42,19 @@ $conn->close();
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 
-</head>
 
 <body>
 <div class="container">
-    <div class="sidebar">
+    <div class="sidebar" style=" background-color: #3498db;">
         <h2>Admin Panel</h2>
         <ul>
             <li><a href="#users">Manage Users</a></li>
             <li><a href="ManageReservations.php">Manage Reservations</a></li>
-            <li><a href="#settings">Settings</a></li>
-            <li><a href="logout.php">Logout</a></li>
+            
         </ul>
     </div>
 
-    <div class="content">
+    <div class="content" style="background-color:rgba(173, 216, 230, 0.3);">
         <h1>Admin Dashboard</h1>
 
         <div>
