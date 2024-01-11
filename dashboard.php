@@ -50,7 +50,7 @@ $conn->close();
         <h2>Admin Panel</h2>
         <ul>
             <li><a href="#users">Manage Users</a></li>
-            <li><a href="#reports">Generate Reports</a></li>
+            <li><a href="ManageReservations.php">Manage Reservations</a></li>
             <li><a href="#settings">Settings</a></li>
             <li><a href="logout.php">Logout</a></li>
         </ul>
