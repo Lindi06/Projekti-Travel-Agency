@@ -1,3 +1,24 @@
+<?php 
+
+include 'dbConnect.php';
+
+if(isset($_POST['submit'])){
+  $destination=$_POST['destination_id'];
+  $date=$_POST['departure-date'];
+  $passengers=$_POST['passengers'];
+  $tickets=$_POST['tickets'];
+
+
+  $sql = "INSERT INTO buyers (destination_id, date, passengers, tickets) VALUES ('$destination', '$date', '$passengers', '$tickets')";
+  $result = $conn->query($sql);
+
+
+
+}
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,11 +29,29 @@
 </head>
 <body>
     <div class="container">
-        <form class="booking-form">
+        <form class="booking-form" method="post">
           <h1>Ticket Booking</h1>
           <div class="form-group">
-            <label for="destination">Destination:</label>
-            <input type="text" id="destination" name="destination" required>
+
+            <label>Destination:</label>
+            <select class="form-control" name="destination_id" id="destination_id" required>
+            <?php
+            $sql = "SELECT destination_id, name, location,description, price FROM destinations";
+            $result = $conn->query($sql);
+            
+            if ($result->num_rows > 0) {
+                while ($row = $result->fetch_assoc()) {
+              
+                    echo "<option value='" . $row["destination_id"] . "' style='background-image: url(\"" . $row["name"] . "\"); background-size: cover;'>" .
+                        "Destination " . $row["name"] . ", Location: " . $row["location"] . ", Price: " . $row["price"] . "$" .
+                        "</option>";
+                }
+            } else {
+                echo "<option>No apartments available</option>";
+            }
+          
+            ?>
+            </select>
           </div>
           <div class="form-group">
             <label for="departure-date">Departure Date:</label>
@@ -23,15 +62,11 @@
             <input type="number" id="passengers" name="passengers" min="1" required>
           </div>
           <div class="form-group">
-            <label for="price-range">Price Range:</label>
-            <select id="price-range" name="price-range">
-              <option value="low">$100 - $300</option>
-              <option value="medium">$300 - $600</option>
-              <option value="high">$600 - $1000</option>
-            </select>
-          </div>
+            <label for="tickets">Number of Tickets:</label>
+            <input type="number" id="tickets" name="tickets" min="1" required>
+           </div>
     
-          <button type="submit">Book Now</button>
+          <button name="submit" type="submit">Book Now</button>
         </form>
       </div>
     
