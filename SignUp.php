@@ -1,24 +1,18 @@
 
 <?php
-session_start();
+include 'dbConnection.php';
 
 
 
 class Database{
-    private $servername = "localhost";
-    private $usernameDB = "root";
-    private $passwordDB = "";
-    private $dbname = "travel";
+   
     private $conn;
 
 
     public function __construct()
     {
-       $this->conn = new mysqli($this->servername,$this->usernameDB, $this->passwordDB, $this->dbname);
-
-    if ($this->conn->connect_error) {
-        die("No connection: " . $this->conn->connect_error);
-    }
+      global $conn;
+      $this->conn=$conn;
 
         
     }

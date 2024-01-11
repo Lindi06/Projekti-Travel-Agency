@@ -1,18 +1,13 @@
 <?php
-session_start();
+include 'dbConnect.php';
 
 class Database {
-    private $servername = "localhost";
-    private $usernameDB = "root";
-    private $passwordDB = "";
-    private $dbname = "travel";
+   
     private $conn;
 
     public function __construct() {
-        $this->conn = new mysqli($this->servername, $this->usernameDB, $this->passwordDB, $this->dbname);
-        if ($this->conn->connect_error) {
-            die("No connection: " . $this->conn->connect_error);
-        }
+       global $conn;
+       $this->conn=$conn;
     }
 
     public function checkLogin($email, $password) {
@@ -71,6 +66,7 @@ if (isset($_POST["signin"])) {
                 </div>
                 <span>or use your email and password</span>
                 <input type="email" name="email" placeholder="Email" id="sign-in-email">
+               
       
                 <input type="password" name="password" placeholder="Password" id="sign-in-password">
            

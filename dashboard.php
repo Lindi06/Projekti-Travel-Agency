@@ -1,23 +1,12 @@
 <?php
-session_start();
+
+include 'dbConnect.php';
 
 if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin') {
     header("Location: index.php");
     exit();
 }
 
-$servername = "localhost";
-$username = "root";
-$password = ""; 
-$dbname = "travel"; 
-
-
-$conn = new mysqli($servername, $username, $password, $dbname);
-
-
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
 
 
 $sql_total_users = "SELECT COUNT(*) AS total_users FROM login";

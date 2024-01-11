@@ -1,17 +1,7 @@
 
 <?php
-session_start();
 
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "travel";
-
-$conn = new mysqli($servername, $username, $password, $dbname);
-
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
+include 'dbConnect.php';
 
 $sql = "SELECT * FROM destinations"; 
 $result = $conn->query($sql);
@@ -117,7 +107,7 @@ $conn->close();
                 Price: $<?php echo $destination['price']; ?><br>
             </p>
             <span>Added by: <?php echo $destination['added_by']; ?></span>
-            <a class="btn-primary" href="booking.php">BOOK NOW</a>
+            <a class="btn-primary" href="tickets.php">BOOK NOW</a>
         </div>
     </div>
 <?php } ?>
