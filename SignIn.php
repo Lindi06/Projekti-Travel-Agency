@@ -22,6 +22,7 @@ class Database {
         if ($result->num_rows > 0) {
             $row = $result->fetch_assoc();
             $_SESSION['emri'] = $row['emri'];
+            $_SESSION['role'] = $row['role'];
             header("Location:index.php");
            
         } else {

@@ -125,9 +125,9 @@ $conn->close();
         
        
 
-        <?php if ($_SESSION['role'] === 'admin') { ?>
+        <?php if (isset($_SESSION['role']) && $_SESSION['role'] === 'admin') { ?>
             <a class="btn-primary" href="add-destination.php">ADD A DESTINATION</a>
-            <?php } ?>
+        <?php } ?>
         
     </div>
 </body>

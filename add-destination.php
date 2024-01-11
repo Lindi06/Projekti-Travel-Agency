@@ -51,7 +51,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             VALUES ('$name', '$location', '$description', '$photo_path', '$price')";
 
     if ($conn->query($sql) === TRUE) {
-        echo "Destination added successfully";
+       header('Location:destinations.php');
     } else {
         echo "Error: " . $sql . "<br>" . $conn->error;
     }
