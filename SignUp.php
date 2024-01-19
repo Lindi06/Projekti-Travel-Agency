@@ -1,60 +1,29 @@
 
 <?php
-include 'dbConnect.php';
+session_start();
+include_once 'C:\xampp\htdocs\Projekti-Travel-Agency\user.php';
+include_once 'C:\xampp\htdocs\Projekti-Travel-Agency\userrespository.php';
 
-
-
-class Database{
-   
-    private $conn;
-
-
-    public function __construct()
-    {
-      global $conn;
-      $this->conn=$conn;
-
-        
-    }
-
-
-    public function SignUp($emri,$email,$password){
-        $sql = "INSERT INTO login (emri, email, password) VALUES ('$emri', '$email', '$password')";
-        $result = $this->conn->query($sql);
-    
-        if ($result) {
-            $_SESSION['emri'] = $emri;
-            header("Location: index.php");
-            exit();
-        } else {
-            echo '<script>alert("Something went wrong")</script>';
-            
-     }
-
-
-    }
-   
-    public function connectionClose(){
-    $this->conn->close();
-     }
-
- }
-
-
-    if(isset($_POST["signup"])){
-        $email=$_POST["email"];
-        $password=$_POST["password"];
-        $emri=$_POST["name"];
-
-        $db=new Database();
-        $db->SignUp($emri,$email,$password);
-        $db->connectionClose();
+if (isset($_POST['signup'])){
+    $emri = $_POST['name'];
+    $mbiemri = $_POST['surname'];
+    $dataLindjes = $_POST['birthdate'];
+    $email = $_POST['email'];
+    $username=$_POST['username'];
+    $password=$_POST['password'];
+    $role=null;
+    $joined_date = date('Y-m-d'); 
     
 
-}
+    $user = new user($emri, $mbiemri, $email, $dataLindjes, $username, $password,$role, $joined_date);
+    
+     
 
-
-
+    $userRepository = new userrespository();
+    $userRepository->insertUser($user);
+    header("location:index.php");
+     }
+     
 
 ?>
 
@@ -83,7 +52,16 @@ class Database{
                     <input type="text" name="name" placeholder="Name" id="sign-up-name">
                 </div>
                 <div class="input-container">
+                    <input type="text" name="surname" placeholder="Surname" id="sign-up-surname">
+                </div>
+                <div class="input-container">
+                    <input type="date" name="birthdate" placeholder="Birth Date" id="sign-up-birthday" >
+                </div>
+                <div class="input-container">
                     <input type="email" name="email" placeholder="Email" id="sign-up-email">
+                </div>
+                <div class="input-container">
+                    <input type="text" name="username" placeholder="Username" id="sign-up-username">
                 </div>
                 <div class="input-container">
                     <input type="password" name="password" placeholder="Password" id="sign-up-password">
@@ -132,8 +110,5 @@ function validateSignUp(){
 
     </script>
 </body>
-
-
-
 
 </html>

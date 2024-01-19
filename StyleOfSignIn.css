@@ -7,11 +7,7 @@
 }
 
 body {
-    background-image: url("photo/banner.jpg");
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-color: hsla(200, 100%, 8%, 0.5);
-    background-blend-mode: overlay;
+    background-color:rgba(173, 216, 230, 0.3);
     display: flex;
     align-items: center;
     justify-content: center;

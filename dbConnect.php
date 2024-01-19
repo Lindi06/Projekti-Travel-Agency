@@ -1,16 +1,30 @@
 <?php
-session_start();
+class DatabaseConnection{
 
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "travel";
+    private $servername = "localhost";
+    private $username = "root";
+    private $password = "";
+    private $dbname = "projektita";
 
-$conn = new mysqli($servername, $username, $password, $dbname);
-
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
+    function startConnection(){
+        try{
+            $conn = new PDO("mysql:host=$this->servername;dbname=$this->dbname", $this->username, $this->password);
+            $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    
+            if(!$conn){
+                //echo "Connection failed "; per testim
+                return null;
+            }else{
+                //echo "Connection successful!"; per testim
+                return $conn;
+            }
+            
+        }catch(PDOException $e){
+            echo "Connection failed ". $e->getMessage();
+            return null;
+        }
 }
-
-
+}
 ?>
+
+

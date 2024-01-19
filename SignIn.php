@@ -1,43 +1,26 @@
 <?php
-include 'dbConnect.php';
+include_once 'C:\xampp\htdocs\Projekti-Travel-Agency\user.php';
+include_once 'C:\xampp\htdocs\Projekti-Travel-Agency\userrespository.php';
 
-class Database {
-   
-    private $conn;
+if (isset($_POST['signin'])) {
+    $email = $_POST['email'];
+    $password = $_POST['password'];
 
-    public function __construct() {
-       global $conn;
-       $this->conn=$conn;
-    }
+    $userRepository = new userrespository();
 
-    public function checkLogin($email, $password) {
-        $sql = "SELECT * FROM login WHERE email='$email' AND password='$password'";
-        $result = $this->conn->query($sql);
+    $loggedInUser = $userRepository->checkLogin($email, $password);
 
-        if ($result->num_rows > 0) {
-            $row = $result->fetch_assoc();
-            $_SESSION['emri'] = $row['emri'];
-            $_SESSION['role'] = $row['role'];
-            header("Location:index.php");
-           
-        } else {
-            echo '<script>alert("Wrong email or password")</script>';
-        }
-    }
-
-    public function closeConnection() {
-        $this->conn->close();
+    if ($loggedInUser) {
+        session_start();
+        $_SESSION['emri'] =$loggedInUser->getUsername();
+        $_SESSION['role']=$loggedInUser->getRole();
+        header("location:index.php");
+        exit;
+    } else {
+        echo "Invalid email or password";
     }
 }
 
-if (isset($_POST["signin"])) {
-    $email = $_POST["email"];
-    $password = $_POST["password"];
-
-    $db = new Database();
-    $db->checkLogin($email, $password);
-    $db->closeConnection();
-}
 ?>
 
 

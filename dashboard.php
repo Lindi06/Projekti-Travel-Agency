@@ -1,37 +1,78 @@
 <?php
+include_once 'dbConnect.php';
 
-include 'dbConnect.php';
+class Dashboard
+{
+    private $conn;
 
-if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin') {
-    header("Location: index.php");
-    exit();
+    public function __construct($conn)
+    {
+        $this->conn = $conn;
+    }
+
+    public function getTotalUsers()
+    {
+        $sql = "SELECT COUNT(*) AS total_users FROM users";
+        $statement = $this->conn->prepare($sql);
+        $statement->execute();
+        $row = $statement->fetch(PDO::FETCH_ASSOC);
+        return $row['total_users'];
+
+
+    }
+    public function getTotalLastMonth(){
+    $sql_last_month = "SELECT COUNT(*) AS last_month FROM users WHERE joined_date >= DATE_SUB(NOW(), INTERVAL 1 MONTH)";
+    $statement = $this->conn->prepare($sql_last_month);
+    $statement->execute();
+    $row = $statement->fetch(PDO::FETCH_ASSOC);
+    return $row['last_month'];
+
+     }
+    
+    public function getTotalLastWeek(){
+     $sql_last_week = "SELECT COUNT(*) AS last_week FROM users WHERE joined_date >= DATE_SUB(NOW(), INTERVAL 1 WEEK)";
+     $statement = $this->conn->prepare($sql_last_week);
+     $statement->execute();
+     $row = $statement->fetch(PDO::FETCH_ASSOC);
+     return $row['last_week'];
+
+      }
+
+    public function getTotalLastDay(){
+    $sql_last_day = "SELECT COUNT(*) AS last_day FROM users WHERE joined_date >= DATE_SUB(NOW(), INTERVAL 1 DAY)";
+    $statement = $this->conn->prepare($sql_last_day);
+    $statement->execute();
+    $row = $statement->fetch(PDO::FETCH_ASSOC);
+    return $row['last_day'];
+
+    }
+
+
+
+    public function closeConnection()
+    {
+        $this->conn = null;
+    }
+
+}
+
+$dbConnection = new DatabaseConnection();
+$conn = $dbConnection->startConnection();
+
+if (!$conn) {
+    die("Connection failed");
 }
 
 
+$dashboard = new Dashboard($conn);
 
-$sql_total_users = "SELECT COUNT(*) AS total_users FROM login";
-$result_total_users = $conn->query($sql_total_users);
-$row_total_users = $result_total_users->fetch_assoc();
-$total_users = $row_total_users['total_users'];
-
-
-$sql_last_month = "SELECT COUNT(*) AS last_month FROM login WHERE joined_date >= DATE_SUB(NOW(), INTERVAL 1 MONTH)";
-$result_last_month = $conn->query($sql_last_month);
-$row_last_month = $result_last_month->fetch_assoc();
-$users_last_month = $row_last_month['last_month'];
-
-$sql_last_week = "SELECT COUNT(*) AS last_week FROM login WHERE joined_date >= DATE_SUB(NOW(), INTERVAL 1 WEEK)";
-$result_last_week = $conn->query($sql_last_week);
-$row_last_week = $result_last_week->fetch_assoc();
-$users_last_week = $row_last_week['last_week'];
+$total_users = $dashboard->getTotalUsers();
+$users_last_month=$dashboard->getTotalLastMonth();
+$users_last_week=$dashboard->getTotalLastWeek();
+$users_last_day=$dashboard->getTotalLastDay();
 
 
-$sql_last_day = "SELECT COUNT(*) AS last_day FROM login WHERE joined_date >= DATE_SUB(NOW(), INTERVAL 1 DAY)";
-$result_last_day = $conn->query($sql_last_day);
-$row_last_day = $result_last_day->fetch_assoc();
-$users_last_day = $row_last_day['last_day'];
-
-$conn->close();
+$dashboard->closeConnection();
 ?>
 
 <!DOCTYPE html>
@@ -103,4 +144,3 @@ $conn->close();
 </body>
 
 </html>
-
