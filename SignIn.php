@@ -1,6 +1,6 @@
 <?php
-include_once 'C:\xampp\htdocs\Projekti-Travel-Agency\user.php';
-include_once 'C:\xampp\htdocs\Projekti-Travel-Agency\userrespository.php';
+include_once 'C:\xampp\htdocs\Projekti-Travel-Agency\Projekti-Travel-Agency\model\user.php';
+include_once 'C:\xampp\htdocs\Projekti-Travel-Agency\Projekti-Travel-Agency\model\userrespository.php';
 
 if (isset($_POST['signin'])) {
     $email = $_POST['email'];

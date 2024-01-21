@@ -1,53 +1,65 @@
 <?php
-include 'dbConnect.php';
+include 'C:\xampp\htdocs\Projekti-Travel-Agency\Projekti-Travel-Agency\dbConnect.php';
+include_once 'C:\xampp\htdocs\Projekti-Travel-Agency\Projekti-Travel-Agency\model\destination.php';
+include_once 'C:\xampp\htdocs\Projekti-Travel-Agency\Projekti-Travel-Agency\model\destinationRepository.php';
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $name = $_POST['name'];
+if (isset($_POST['submit'])) {
+    $emri = $_POST['name'];
     $location = $_POST['location'];
     $description = $_POST['description'];
     $price = $_POST['price'];
-    $photo_path = '';
 
-    if ($_FILES['photo']['name']) {
-        $target_dir = "uploads/"; 
-        $target_file = $target_dir . basename($_FILES["photo"]["name"]);
-        $uploadOk = 1;
-        $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
+    $photo = uploadPhoto();
 
+   
+        $destination = new destination($emri, $location, $description, $price, $photo);
+
+        $destinationRepository = new destinationrespository(); 
+        $destinationRepository->insertDestination($destination);
      
-        
-        if (
-            $imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
-        ) {
-            echo "Sorry, only JPG, JPEG, PNG files are allowed.";
-            $uploadOk = 0;
-        }
 
-    
-        if ($uploadOk == 0) {
-            echo "Sorry, your file was not uploaded.";
-      
-        } else {
-            if (move_uploaded_file($_FILES["photo"]["tmp_name"], $target_file)) {
-                $photo_path = $target_file;
-            } else {
-                echo "Sorry, there was an error uploading your file.";
-            }
-        }
-    }
-
-    $sql = "INSERT INTO destinations (name, location, description, photo_path, price) 
-            VALUES ('$name', '$location', '$description', '$photo_path', '$price')";
-
-    if ($conn->query($sql) === TRUE) {
-       header('Location:destinations.php');
-    } else {
-        echo "Error: " . $sql . "<br>" . $conn->error;
-    }
+  
 }
 
-$conn->close();
+function uploadPhoto()
+{
+    $targetDirectory = "uploads/";
+    $targetFile = $targetDirectory . uniqid() . '_' . basename($_FILES["photo"]["name"]);
+    $uploadOk = 1;
+    $imageFileType = strtolower(pathinfo($targetFile, PATHINFO_EXTENSION));
+
+    // Check if the file is an actual image
+    if (isset($_POST["submit"])) {
+        $check = getimagesize($_FILES["photo"]["tmp_name"]);
+        if ($check === false) {
+            echo "Error: The uploaded file is not an image.";
+            $uploadOk = 0;
+        }
+    }
+
+    
+    $allowedFormats = array("jpg", "jpeg", "png");
+    if (!in_array($imageFileType, $allowedFormats)) {
+        echo "Error: Only JPG, JPEG, and PNG files are allowed.";
+        $uploadOk = 0;
+    }
+
+    if ($uploadOk == 0) {
+        echo "Error: Your file was not uploaded.";
+    } else {
+        if (move_uploaded_file($_FILES["photo"]["tmp_name"], $targetFile)) {
+            echo "File uploaded successfully!";
+            return $targetFile;
+        } else {
+            echo "Error: There was an error uploading your file.";
+        }
+    }
+
+    return null;
+}
+
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -110,7 +122,8 @@ $conn->close();
 </head>
 <body>
     <h1>Add Destination</h1>
-    <form action="add-destination.php" method="post" enctype="multipart/form-data">
+    <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post" enctype="multipart/form-data">
+
         <label for="name">Name:</label>
         <input type="text" id="name" name="name">
 
@@ -126,7 +139,9 @@ $conn->close();
         <label for="photo">Photo:</label>
         <input type="file" id="photo" name="photo">
 
-        <input type="submit" value="Add Destination">
+        <input type="submit" name="submit" value="Add Destination">
     </form>
 </body>
+
+
 </html>

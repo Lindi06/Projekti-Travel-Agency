@@ -1,25 +1,12 @@
-
 <?php
-
+session_start();
 include 'dbConnect.php';
+include_once 'C:\xampp\htdocs\Projekti-Travel-Agency\Projekti-Travel-Agency\model\destinationRepository.php';
+include_once 'C:\xampp\htdocs\Projekti-Travel-Agency\Projekti-Travel-Agency\model\destination.php';
 
-$sql = "SELECT * FROM destinations"; 
-$result = $conn->query($sql);
-
-$destinations = array();
-
-if ($result->num_rows > 0) {
-    while ($row = $result->fetch_assoc()) {
-        $destinations[] = $row;
-    }
-}
-
-
-
-
-$conn->close();
+$destinationrepository = new destinationrespository();
+$destinations = $destinationrepository->getAllDestinations();
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -96,6 +83,7 @@ $conn->close();
             border-radius: 5px;
             cursor: pointer;
             padding-right: 10px;
+            margin: 10px;
         }
 
         .btn-primary:hover {
@@ -113,7 +101,8 @@ $conn->close();
             border: none;
             border-radius: 5px;
             cursor: pointer;
-            padding-right: 10px;
+            padding-right: 20px;
+            margin: 10px;
 
         }
 
@@ -128,39 +117,48 @@ $conn->close();
         <h1>Available Destinations</h1>
         <div class="card-deck">
       
-      <?php  foreach ($destinations as $destination) { ?>
+        <?php foreach ($destinations as $destination) { ?>
     <div class="card">
-        <img src="<?php echo $destination['photo_path']; ?>" alt="Destination Image">
+        <img src="<?php echo $destination->getPhoto(); ?>" alt="Destination Image">
         <div class="card-body">
-            <h5><?php echo $destination['name']; ?></h5>
+            <h5><?php echo $destination->getEmri(); ?></h5>
             <p>
-                Location: <?php echo $destination['location']; ?><br><br>
-                Description: <?php echo $destination['description']; ?><br><br>
-                Price: $<?php echo $destination['price']; ?><br>
+                Location: <?php echo $destination->getLocation(); ?><br><br>
+                Description: <?php echo $destination->getDescription(); ?><br><br>
+                Price: $<?php echo $destination->getPrice(); ?><br>
             </p>
-            <span>Added by: <?php echo $destination['added_by']; ?></span>
-
+     
+        </div>
         <div class="btns">
-            <form action="" method="post">
-            <a class="btn-primary" href="tickets.php">BOOK NOW</a>
-            <?php if (isset($_SESSION['role']) && $_SESSION['role'] === 'admin') { ?>
-                <button class="btn-second" type="submit" name="delete">Delete</button>
-            <?php }?>
+                            <form action="destinations.php" method="post">
+                                <a class="btn-primary" href="tickets.php">BOOK NOW</a>
+                                <?php if (isset($_SESSION['role']) && strtolower($_SESSION['role']) === 'admin') { ?>
+                                    <a class="btn-second" href='delete.php?id=<?php echo $destination->getId(); ?>'>Delete</a>
+
+
+<?php } ?>
+
             </form>
             </div>
+    </div>
+    <?php
+
+}
+?>
+
+
+                        
         
         </div>
     </div>
-<?php } ?>
+
         </div>
         
        
 
         <?php if (isset($_SESSION['role']) && $_SESSION['role'] === 'admin') { ?>
             <a class="btn-primary" href="add-destination.php">ADD A DESTINATION</a>
-         
         <?php } ?>
-        
     </div>
 </body>
 </html>
