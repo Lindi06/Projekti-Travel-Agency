@@ -82,6 +82,22 @@ $destinations = $destinationrepository->getAllDestinations();
             margin: 10px;
         }
 
+        .btn-third{
+            display: block;
+            width: 100%;
+            text-align: center;
+            padding: 10px;
+            background-color: #3498db;
+            color: #fff;
+            text-decoration: none;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            padding-right: 10px;
+            margin: 10px;
+
+        }
+
         .btn-primary:hover {
             background-color: #2980b9;
         }
@@ -124,9 +140,12 @@ $destinations = $destinationrepository->getAllDestinations();
                     </div>
                     <div class="btns">
                         <form action="destinations.php" method="post">
+                        <?php if (isset($_SESSION['role']) && strtolower($_SESSION['role']) === 'user') { ?>
                             <a class="btn-primary" href="tickets.php">BOOK NOW</a>
+                            <?php } ?>
                             <?php if (isset($_SESSION['role']) && strtolower($_SESSION['role']) === 'admin') { ?>
-                                <a class="btn-second" href='delete.php?id=<?php echo $destination['id']; ?>'>Delete</a>
+                                <a class="btn-third" href='EditDestination.php?id=<?php echo $destination['id']; ?>'>Edit</a>
+                                <a class="btn-second" href='deleteDestination.php?id=<?php echo $destination['id']; ?>'>Delete</a>
                             <?php } ?>
                         </form>
                     </div>

@@ -65,13 +65,19 @@ class destinationrespository {
         echo "<script>alert('delete was successful'); </script>";
    } 
 
-   function insertBooking($ticket){
-        $conn= $this->connection;
+   function updateDestination($id,$emri,$location,$description,$price){
+    $conn = $this->connection;
+
+    $sql = "UPDATE destinations SET emri=?, location=?, description=?, price=?WHERE id=?";
+
+    $statement = $conn->prepare($sql);
+
+    $statement->execute([$emri,$location,$description,$price,$id]);
+
+    echo "<script>alert('update was successful'); </script>";
+} 
 
 
-
-
-   }
 }
 ?>
 

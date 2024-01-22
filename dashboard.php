@@ -82,7 +82,7 @@ $dashboard->closeConnection();
         <div class="sidebar" style=" background-color: #3498db;">
             <h2>Admin Panel</h2>
             <ul>
-                <li><a href="#users">Manage Users</a></li>
+                <li><a href="ManageUsers.php">Manage Users</a></li>
                 <li><a href="ManageReservations.php">Manage Reservations</a></li>
             </ul>
         </div>

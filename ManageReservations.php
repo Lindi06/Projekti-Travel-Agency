@@ -1,16 +1,11 @@
 <?php
 include 'dbConnect.php';
+include 'C:\xampp\htdocs\Projekti-Travel-Agency\Projekti-Travel-Agency\model\ticketRepository.php';
 
-$sql = "SELECT * FROM buyers";
-$result = $conn->query($sql);
 
-$buyers = array();
+$ticketRepository=new ticketRepository();
+$tickets=$ticketRepository->getAllBookedTickets();
 
-if ($result->num_rows > 0) {
-    while ($row = $result->fetch_assoc()) {
-        $buyers[] = $row;
-    }
-}
 ?>
 
 <!DOCTYPE html>
@@ -69,22 +64,22 @@ if ($result->num_rows > 0) {
         <table>
             <thead>
                 <tr>
-                    <th>Buyer ID</th>
+                    <th>Ticket ID</th>
                     <th>Destination ID</th>
-                    <th>Date</th>
-                    <th>Passengers</th>
-                    <th>Tickets</th>
+                    <th>Departure Date</th>
+                    <th>Arrival Date</th>
+                    <th>No. Tickets</th>
                 </tr>
             </thead>
             <tbody>
                 <?php
-                foreach ($buyers as $buyer) {
+                foreach ($tickets as $ticket) {
                     echo "<tr>";
-                    echo "<td>" . $buyer['buyer_id'] . "</td>";
-                    echo "<td>" . $buyer['destination_id'] . "</td>";
-                    echo "<td>" . $buyer['date'] . "</td>";
-                    echo "<td>" . $buyer['passengers'] . "</td>";
-                    echo "<td>" . $buyer['tickets'] . "</td>";
+                    echo "<td>" . $ticket['id'] . "</td>";
+                    echo "<td>" . $ticket['destination_id'] . "</td>";
+                    echo "<td>" . $ticket['depart_time'] . "</td>";
+                    echo "<td>" . $ticket['arrival_time'] . "</td>";
+                    echo "<td>" . $ticket['tickets'] . "</td>";
                     echo "</tr>";
                 }
                 ?>

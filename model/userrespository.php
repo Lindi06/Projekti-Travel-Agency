@@ -40,49 +40,29 @@ class userrespository {
 
     public function getAllUsers() {
         $conn = $this->connection;
+    
+    $sql = "SELECT * FROM users";
+    $statement = $conn->prepare($sql);
+    $statement->execute();
 
-        $sql = "SELECT * FROM users";
-        $statement = $conn->query($sql);
+    $users = $statement->fetchAll(PDO::FETCH_ASSOC);
 
-        $users = [];
-        while ($userArray = $statement->fetch(PDO::FETCH_ASSOC)) {
-            $user = new user(
-                $userArray['emri'],
-                $userArray['mbiemri'],
-                $userArray['email'],
-                $userArray['datelindja'],
-                $userArray['username'],
-                $userArray['passwordi'],
-                $userArray['role'],
-                $userArray['joined_date']
-            );
-            $users[] = $user;
-        }
+    return $users;
 
-        return $users;
     }
-
-    public function editStudent($id, $emri, $mbiemri, $emaili, $dataelindjes, $username, $password) {
+    function updateUser($id, $emri, $mbiemri, $email, $dataelindjes, $username, $password) {
         $conn = $this->connection;
-        $sql = "UPDATE users SET emri=?,mbiemri=?, emaili=?, datelindja=?, username=?, passwordi=? WHERE Id=?";
-
+    
+        $sql = "UPDATE users SET emri=?, mbiemri=?, email=?, datelindja=?, username=?, passwordi=? WHERE id=?";
+    
         $statement = $conn->prepare($sql);
-        $statement->bindParam(1, $emri);
-        $statement->bindParam(2, $mbiemri);
-        $statement->bindParam(3, $emaili);
-        $statement->bindParam(4, $dataelindjes);
-        $statement->bindParam(5, $username);
-        $statement->bindParam(6, $password);
-        $statement->bindParam(7, $id);
-
-        if ($statement->execute()) {
-            echo "<script>alert('U ndryshua me sukses!')</script>";
-        } else {
-            echo "<script>alert('Error: " . $conn->errorInfo()[2] . "')</script>";
-        }
+    
+        $statement->execute([$emri, $mbiemri, $email, $dataelindjes, $username, $password, $id]);
+    
+        echo "<script>alert('Update was successful'); </script>";
     }
-
-    function deleteStudent($id) {
+    
+    function deleteUser($id) {
         $conn = $this->connection;
 
         $sql = "DELETE FROM users WHERE Id=?";
@@ -96,32 +76,15 @@ class userrespository {
         }
     }
 
-    function getStudentById($id) {
+    function getUserById($id){
         $conn = $this->connection;
 
-        $sql = "SELECT * FROM users WHERE Id=?";
-        $statement = $conn->prepare($sql);
-        $statement->bindParam(1, $id);
-        $statement->execute();
+        $sql = "SELECT * FROM users WHERE id='$id'";
 
-        $result = $statement->fetch(PDO::FETCH_ASSOC);
+        $statement = $conn->query($sql);
+        $user = $statement->fetch();
 
-        if ($result && !empty($result)) {
-            $user = new user(
-                $result['emri'],
-                $result['mbiemri'],
-                $result['email'],
-                $result['datelindja'],
-                $result['username'],
-                $result['passwordi'],
-                $result['role'],
-                $result['joined_date']
-            );
-
-            return $user;
-        }
-
-        return null;
+        return $user;
     }
 
     public function checkLogin($email, $password) {

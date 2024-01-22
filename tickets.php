@@ -1,25 +1,14 @@
-<?php 
+<?php
+include_once 'C:\xampp\htdocs\Projekti-Travel-Agency\Projekti-Travel-Agency\dbConnect.php';
+include_once 'C:\xampp\htdocs\Projekti-Travel-Agency\Projekti-Travel-Agency\model\ticket.php';
+include_once 'C:\xampp\htdocs\Projekti-Travel-Agency\Projekti-Travel-Agency\model\ticketRepository.php';
 
 
-include 'dbConnect.php';
-
-if(isset($_POST['submit'])){
-  $_SESSION["destination_id"]= $destination=$_POST['destination_id'];
-  $date=$_POST['departure-date'];
-  $passengers=$_POST['passengers'];
-  $tickets=$_POST['tickets'];
+$ticketRepository = new ticketRepository();
 
 
-  $sql = "INSERT INTO buyers (destination_id, date, passengers, tickets) VALUES ('$destination', '$date', '$passengers', '$tickets')";
-  $result = $conn->query($sql);
-
-
-
-}
-
+$destinations = $ticketRepository->getAvailableDestinations();
 ?>
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -27,7 +16,7 @@ if(isset($_POST['submit'])){
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Flight Booking System</title>
     <style>
-      body {
+     body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
@@ -36,20 +25,28 @@ if(isset($_POST['submit'])){
     align-items: center;
     height: 100vh;
     background-color:rgba(173, 216, 230, 0.3);
+    display: flex;
+    flex-direction: column;
+ 
   }
 
   .container {
-    width: 400px;
+    width: 500px;
     background-color: lightblue;
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+
+    text-align: center;
+
+
+
   }
 
   .booking-form {
     display: flex;
-    flex-direction: column;
     padding: 20px;
+    flex-direction: column;
   }
 
   .form-group {
@@ -89,47 +86,32 @@ if(isset($_POST['submit'])){
     </style>
 </head>
 <body>
-    <div class="container">
-        <form class="booking-form" method="post">
-          <h1>Ticket Booking</h1>
-          <div class="form-group">
+<div class="container">
+    <h1>Ticket Booking</h1>
+    
 
-            <label>Destination:</label>
-            <select class="form-control" name="destination_id" id="destination_id" required>
-            <?php
-            $sql = "SELECT destination_id, name, location,description, price FROM destinations";
-            $result = $conn->query($sql);
-            
-            if ($result->num_rows > 0) {
-                while ($row = $result->fetch_assoc()) {
-              
-                    echo "<option value='" . $row["destination_id"] . "' style='background-image: url(\"" . $row["name"] . "\"); background-size: cover;'>" .
-                        "Destination " . $row["name"] . ", Location: " . $row["location"] . ", Price: " . $row["price"] . "$" .
-                        "</option>";
-                }
-            } else {
-                echo "<option>No apartments available</option>";
-            }
-          
-            ?>
-            </select>
-          </div>
-          <div class="form-group">
-            <label for="departure-date">Departure Date:</label>
-            <input type="date" id="departure-date" name="departure-date" required>
-          </div>
-          <div class="form-group">
-            <label for="passengers">Number of Passengers:</label>
-            <input type="number" id="passengers" name="passengers" min="1" required>
-          </div>
-          <div class="form-group">
-            <label for="tickets">Number of Tickets:</label>
-            <input type="number" id="tickets" name="tickets" min="1" required>
-           </div>
-    
-          <button name="submit" type="submit">Book Now</button>
-        </form>
-      </div>
-    
+    <form action="process_ticket_booking.php" class="booking-form" method="post">
+        <label for="destination">Select Destination:</label>
+        <select id="destination" name="destination_id" required>
+            <?php foreach ($destinations as $destination): ?>
+                <option value="<?php echo $destination['id']; ?>"><?php echo $destination['emri']; ?></option>
+            <?php endforeach; ?>
+        </select>
+
+        <label for="departure_date">Departure Date:</label>
+        <input type="date" id="departure_date" name="departure_date" required>
+
+        <label for="arrival_date">Arrival Date:</label>
+        <input type="date" id="arrival_date" name="arrival_date" required>
+
+        <label for="number_tickets">Number of Tickets:</label>
+        <input type="number" id="number_tickets" name="number_tickets" required>
+
+        <button name="submit" type="submit">Submit</button>
+    </form>
+    </div>
 </body>
 </html>
+
+
+
