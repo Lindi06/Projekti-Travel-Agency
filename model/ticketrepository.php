@@ -10,7 +10,7 @@ class ticketRepository{
     {
         $conn=new DatabaseConnection();
         $this->connection=$conn->startConnection();
-
+        
     }
 
 
@@ -47,8 +47,24 @@ class ticketRepository{
     }
 }
 
+public function getAllBookedTickets() {
+    $conn = $this->connection;
+    
+    $sql = "SELECT * FROM ticket";
+    $statement = $conn->prepare($sql);
+    $statement->execute();
+
+    $tickets = $statement->fetchAll(PDO::FETCH_ASSOC);
+
+    return $tickets;
+}
 
 }
+
+
+
+
+
 
 
 

@@ -4,10 +4,10 @@ class DatabaseConnection {
     private $username = "root";
     private $password = "";
     // emri i databes per Dorajetin
-   // private $dbname = "projektita";
+   private $dbname = "projektita";
    
    // emri i databazes per Lindin
-   private $dbname = "user";
+   //private $dbname = "user";
     private $conn;
 
     public function startConnection() {
