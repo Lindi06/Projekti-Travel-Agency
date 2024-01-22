@@ -1,6 +1,6 @@
 <?php
-include_once('dbConnect.php');
-include_once('user.php');
+include_once('C:\xampp\htdocs\Projekti-Travel-Agency\Projekti-Travel-Agency\dbConnect.php');
+include_once('C:\xampp\htdocs\Projekti-Travel-Agency\Projekti-Travel-Agency\model\user.php');
 
 class userrespository {
     private $connection;
@@ -21,14 +21,20 @@ class userrespository {
         $password = $user->getPasswordi();
         $joined_date = $user->getJoinedDate();
 
-        $sql = "INSERT INTO users (emri, mbiemri, email, datelindja, username, passwordi, joined_date) VALUES (?,?,?,?,?,?,?)";
+        $sql = "INSERT INTO users (emri, mbiemri, email, datelindja, username, passwordi, joined_date) VALUES (?, ?, ?, ?, ?, ?, ?)";
         $statement = $conn->prepare($sql);
-        $statement->bind_param("sssssss", $emri, $mbiemri, $emaili, $dataelindjes, $username, $password, $joined_date);
-        
+        $statement->bindParam(1, $emri);
+        $statement->bindParam(2, $mbiemri);
+        $statement->bindParam(3, $emaili);
+        $statement->bindParam(4, $dataelindjes);
+        $statement->bindParam(5, $username);
+        $statement->bindParam(6, $password);
+        $statement->bindParam(7, $joined_date);
+
         if ($statement->execute()) {
             echo "<script>alert('U shtua me sukses!')</script>";
         } else {
-            echo "<script>alert('Error: " . $conn->error . "')</script>";
+            echo "<script>alert('Error: " . $conn->errorInfo()[2] . "')</script>";
         }
     }
 
@@ -36,10 +42,10 @@ class userrespository {
         $conn = $this->connection;
 
         $sql = "SELECT * FROM users";
-        $result = $conn->query($sql);
+        $statement = $conn->query($sql);
 
         $users = [];
-        while ($userArray = $result->fetch_assoc()) {
+        while ($userArray = $statement->fetch(PDO::FETCH_ASSOC)) {
             $user = new user(
                 $userArray['emri'],
                 $userArray['mbiemri'],
@@ -61,12 +67,18 @@ class userrespository {
         $sql = "UPDATE users SET emri=?,mbiemri=?, emaili=?, datelindja=?, username=?, passwordi=? WHERE Id=?";
 
         $statement = $conn->prepare($sql);
-        $statement->bind_param("ssssssi", $emri, $mbiemri, $emaili, $dataelindjes, $username, $password, $id);
+        $statement->bindParam(1, $emri);
+        $statement->bindParam(2, $mbiemri);
+        $statement->bindParam(3, $emaili);
+        $statement->bindParam(4, $dataelindjes);
+        $statement->bindParam(5, $username);
+        $statement->bindParam(6, $password);
+        $statement->bindParam(7, $id);
 
         if ($statement->execute()) {
             echo "<script>alert('U ndryshua me sukses!')</script>";
         } else {
-            echo "<script>alert('Error: " . $conn->error . "')</script>";
+            echo "<script>alert('Error: " . $conn->errorInfo()[2] . "')</script>";
         }
     }
 
@@ -75,12 +87,12 @@ class userrespository {
 
         $sql = "DELETE FROM users WHERE Id=?";
         $statement = $conn->prepare($sql);
-        $statement->bind_param("i", $id);
+        $statement->bindParam(1, $id);
 
         if ($statement->execute()) {
             echo "<script>alert('U fshi me sukses!')</script>";
         } else {
-            echo "<script>alert('Error: " . $conn->error . "')</script>";
+            echo "<script>alert('Error: " . $conn->errorInfo()[2] . "')</script>";
         }
     }
 
@@ -89,22 +101,21 @@ class userrespository {
 
         $sql = "SELECT * FROM users WHERE Id=?";
         $statement = $conn->prepare($sql);
-        $statement->bind_param("i", $id);
+        $statement->bindParam(1, $id);
         $statement->execute();
 
-        $result = $statement->get_result();
-        $userArray = $result->fetch_assoc();
+        $result = $statement->fetch(PDO::FETCH_ASSOC);
 
-        if ($userArray && !empty($userArray)) {
+        if ($result && !empty($result)) {
             $user = new user(
-                $userArray['emri'],
-                $userArray['mbiemri'],
-                $userArray['email'],
-                $userArray['datelindja'],
-                $userArray['username'],
-                $userArray['passwordi'],
-                $userArray['role'],
-                $userArray['joined_date']
+                $result['emri'],
+                $result['mbiemri'],
+                $result['email'],
+                $result['datelindja'],
+                $result['username'],
+                $result['passwordi'],
+                $result['role'],
+                $result['joined_date']
             );
 
             return $user;
@@ -118,22 +129,22 @@ class userrespository {
 
         $sql = "SELECT * FROM users WHERE email = ? AND passwordi = ?";
         $statement = $conn->prepare($sql);
-        $statement->bind_param("ss", $email, $password);
+        $statement->bindParam(1, $email);
+        $statement->bindParam(2, $password);
         $statement->execute();
 
-        $result = $statement->get_result();
-        $userArray = $result->fetch_assoc();
+        $result = $statement->fetch(PDO::FETCH_ASSOC);
 
-        if ($userArray && !empty($userArray)) {
+        if ($result && !empty($result)) {
             $user = new user(
-                $userArray['emri'],
-                $userArray['mbiemri'],
-                $userArray['email'],
-                $userArray['datelindja'],
-                $userArray['username'],
-                $userArray['passwordi'],
-                $userArray['role'],
-                $userArray['joined_date']
+                $result['emri'],
+                $result['mbiemri'],
+                $result['email'],
+                $result['datelindja'],
+                $result['username'],
+                $result['passwordi'],
+                $result['role'],
+                $result['joined_date']
             );
 
             return $user;
@@ -147,13 +158,12 @@ class userrespository {
 
         $sql = "SELECT * FROM users WHERE role=?";
         $statement = $conn->prepare($sql);
-        $statement->bind_param("s", $r);
+        $statement->bindParam(1, $r);
         $statement->execute();
 
-        $result = $statement->get_result();
-        $userArray = $result->fetch_assoc();
+        $result = $statement->fetch(PDO::FETCH_ASSOC);
 
-        return $userArray;
+        return $result;
     }
 }
 ?>

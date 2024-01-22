@@ -11,51 +11,50 @@ if (isset($_POST['submit'])) {
 
     $photo = uploadPhoto();
 
-   
+    if ($photo !== null) {
         $destination = new destination($emri, $location, $description, $price, $photo);
 
         $destinationRepository = new destinationrespository(); 
         $destinationRepository->insertDestination($destination);
-     
-
-  
+        header("Location:destinations.php");
+    } else {
+        echo "Error: Photo upload failed.";
+    }
 }
 
 function uploadPhoto()
 {
     $targetDirectory = "uploads/";
-    $targetFile = $targetDirectory . uniqid() . '_' . basename($_FILES["photo"]["name"]);
-    $uploadOk = 1;
-    $imageFileType = strtolower(pathinfo($targetFile, PATHINFO_EXTENSION));
+    $originalFileName = basename($_FILES["photo"]["name"]);
+    $targetFile = $targetDirectory . uniqid() . '_' . $originalFileName;
 
-    // Check if the file is an actual image
-    if (isset($_POST["submit"])) {
-        $check = getimagesize($_FILES["photo"]["tmp_name"]);
-        if ($check === false) {
-            echo "Error: The uploaded file is not an image.";
-            $uploadOk = 0;
-        }
+    // Check if it's an image
+    if (!getimagesize($_FILES["photo"]["tmp_name"])) {
+        echo "Error: The uploaded file is not an image.";
+        return null;
     }
 
-    
+    // Check the file format
     $allowedFormats = array("jpg", "jpeg", "png");
+    $imageFileType = strtolower(pathinfo($targetFile, PATHINFO_EXTENSION));
     if (!in_array($imageFileType, $allowedFormats)) {
         echo "Error: Only JPG, JPEG, and PNG files are allowed.";
-        $uploadOk = 0;
+        return null;
     }
 
-    if ($uploadOk == 0) {
-        echo "Error: Your file was not uploaded.";
+    // Check for file existence and generate a new name if necessary
+    while (file_exists($targetFile)) {
+        $targetFile = $targetDirectory . uniqid() . '_' . $originalFileName;
+    }
+
+    // Move the uploaded file to the target directory
+    if (move_uploaded_file($_FILES["photo"]["tmp_name"], $targetFile)) {
+        echo "File uploaded successfully!";
+        return $targetFile;
     } else {
-        if (move_uploaded_file($_FILES["photo"]["tmp_name"], $targetFile)) {
-            echo "File uploaded successfully!";
-            return $targetFile;
-        } else {
-            echo "Error: There was an error uploading your file.";
-        }
+        echo "Error: There was an error uploading your file.";
+        return null;
     }
-
-    return null;
 }
 
 ?>

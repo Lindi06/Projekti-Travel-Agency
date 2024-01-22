@@ -11,7 +11,6 @@ $destinations = $destinationrepository->getAllDestinations();
 <html lang="en">
 <head>
     <style>
-      
         body {
             font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
             margin: 0;
@@ -24,7 +23,6 @@ $destinations = $destinationrepository->getAllDestinations();
             width: 80%;
             margin: auto;
             padding-top: 50px;
-           
         }
 
         h1 {
@@ -36,7 +34,6 @@ $destinations = $destinationrepository->getAllDestinations();
             display: flex;
             flex-wrap: wrap;
             justify-content: space-between;
-
         }
 
         .card {
@@ -48,7 +45,6 @@ $destinations = $destinationrepository->getAllDestinations();
             background-color: rgba(135, 206, 250, 0.3);
             display:  flex;
             flex-direction: column;
-        
         }
 
         .card img {
@@ -103,12 +99,11 @@ $destinations = $destinationrepository->getAllDestinations();
             cursor: pointer;
             padding-right: 20px;
             margin: 10px;
-
         }
 
-        .btns form{
+        .btns form {
             display: flex;
-           gap: 10px;
+            gap: 10px;
         }
     </style>
 </head>
@@ -116,45 +111,28 @@ $destinations = $destinationrepository->getAllDestinations();
     <div class="container">
         <h1>Available Destinations</h1>
         <div class="card-deck">
-      
-        <?php foreach ($destinations as $destination) { ?>
-    <div class="card">
-        <img src="<?php echo $destination->getPhoto(); ?>" alt="Destination Image">
-        <div class="card-body">
-            <h5><?php echo $destination->getEmri(); ?></h5>
-            <p>
-                Location: <?php echo $destination->getLocation(); ?><br><br>
-                Description: <?php echo $destination->getDescription(); ?><br><br>
-                Price: $<?php echo $destination->getPrice(); ?><br>
-            </p>
-     
+            <?php foreach ($destinations as $destination) { ?>
+                <div class="card">
+                    <img src="<?php echo $destination['photo']; ?>" alt="Destination Image">
+                    <div class="card-body">
+                        <h5><?php echo $destination['emri']; ?></h5>
+                        <p>
+                            Location: <?php echo $destination['location']; ?><br><br>
+                            Description: <?php echo $destination['description']; ?><br><br>
+                            Price: $<?php echo $destination['price']; ?><br>
+                        </p>
+                    </div>
+                    <div class="btns">
+                        <form action="destinations.php" method="post">
+                            <a class="btn-primary" href="tickets.php">BOOK NOW</a>
+                            <?php if (isset($_SESSION['role']) && strtolower($_SESSION['role']) === 'admin') { ?>
+                                <a class="btn-second" href='delete.php?id=<?php echo $destination['id']; ?>'>Delete</a>
+                            <?php } ?>
+                        </form>
+                    </div>
+                </div>
+            <?php } ?>
         </div>
-        <div class="btns">
-                            <form action="destinations.php" method="post">
-                                <a class="btn-primary" href="tickets.php">BOOK NOW</a>
-                                <?php if (isset($_SESSION['role']) && strtolower($_SESSION['role']) === 'admin') { ?>
-                                    <a class="btn-second" href='delete.php?id=<?php echo $destination->getId(); ?>'>Delete</a>
-
-
-<?php } ?>
-
-            </form>
-            </div>
-    </div>
-    <?php
-
-}
-?>
-
-
-                        
-        
-        </div>
-    </div>
-
-        </div>
-        
-       
 
         <?php if (isset($_SESSION['role']) && $_SESSION['role'] === 'admin') { ?>
             <a class="btn-primary" href="add-destination.php">ADD A DESTINATION</a>

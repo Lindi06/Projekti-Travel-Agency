@@ -7,22 +7,21 @@ class DatabaseConnection {
     private $conn;
 
     public function startConnection() {
-        $this->conn = new mysqli($this->servername, $this->username, $this->password, $this->dbname);
-
-        // Check connection
-        if ($this->conn->connect_error) {
-            die("Connection failed: " . $this->conn->connect_error);
+        try {
+            $dsn = "mysql:host={$this->servername};dbname={$this->dbname}";
+            $this->conn = new PDO($dsn, $this->username, $this->password);
+            $this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            return $this->conn;
+        } catch (PDOException $e) {
+            die("Connection failed: " . $e->getMessage());
         }
-
-        return $this->conn;
     }
 
     public function closeConnection() {
-        if ($this->conn) {
-            $this->conn->close();
-        }
+        $this->conn = null;
     }
 }
+
 ?>
 
 

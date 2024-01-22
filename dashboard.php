@@ -13,38 +13,42 @@ class Dashboard
     public function getTotalUsers()
     {
         $sql = "SELECT COUNT(*) AS total_users FROM users";
-        $result = $this->conn->query($sql);
-        $row = $result->fetch_assoc();
-        return $row['total_users'];
+        $statement = $this->conn->prepare($sql);
+        $statement->execute();
+        $result = $statement->fetch(PDO::FETCH_ASSOC);
+        return $result['total_users'];
     }
 
     public function getTotalLastMonth()
     {
         $sql_last_month = "SELECT COUNT(*) AS last_month FROM users WHERE joined_date >= DATE_SUB(NOW(), INTERVAL 1 MONTH)";
-        $result = $this->conn->query($sql_last_month);
-        $row = $result->fetch_assoc();
-        return $row['last_month'];
+        $statement = $this->conn->prepare($sql_last_month);
+        $statement->execute();
+        $result = $statement->fetch(PDO::FETCH_ASSOC);
+        return $result['last_month'];
     }
 
     public function getTotalLastWeek()
     {
         $sql_last_week = "SELECT COUNT(*) AS last_week FROM users WHERE joined_date >= DATE_SUB(NOW(), INTERVAL 1 WEEK)";
-        $result = $this->conn->query($sql_last_week);
-        $row = $result->fetch_assoc();
-        return $row['last_week'];
+        $statement = $this->conn->prepare($sql_last_week);
+        $statement->execute();
+        $result = $statement->fetch(PDO::FETCH_ASSOC);
+        return $result['last_week'];
     }
 
     public function getTotalLastDay()
     {
         $sql_last_day = "SELECT COUNT(*) AS last_day FROM users WHERE joined_date >= DATE_SUB(NOW(), INTERVAL 1 DAY)";
-        $result = $this->conn->query($sql_last_day);
-        $row = $result->fetch_assoc();
-        return $row['last_day'];
+        $statement = $this->conn->prepare($sql_last_day);
+        $statement->execute();
+        $result = $statement->fetch(PDO::FETCH_ASSOC);
+        return $result['last_day'];
     }
 
     public function closeConnection()
     {
-        $this->conn->close();
+        $this->conn = null;
     }
 }
 

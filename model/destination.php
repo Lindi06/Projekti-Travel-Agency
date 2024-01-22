@@ -7,8 +7,8 @@ class destination{
     private $price;
     private $photo;
 
-    public function __construct($id='',$emri = '', $location = '', $description = '', $price = 0, $photo = ''){
-        $this->id=$id;
+    public function __construct($emri = '', $location = '', $description = '', $price = 0, $photo = ''){
+   
         $this->emri=$emri;
         $this->location=$location;
         $this->description=$description;
