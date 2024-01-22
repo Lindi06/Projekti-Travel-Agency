@@ -11,7 +11,6 @@ $ticketRepository = new TicketRepository();
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     session_start();
 
-   
     if (isset($_POST['destination_id']) && !empty($_POST['destination_id'])) {
         $destinationId = $_POST['destination_id'];
         $departureDate = $_POST['departure_date'];
@@ -20,11 +19,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         $ticket = new Ticket($departureDate, $arrivalDate, $numTickets, $destinationId);
 
-      
+
         $ticketRepository->insertTicket($ticket);
-        header("Location:index.php");
+        header("Location:destinations.php");
     } else {
-      
+
         echo "Error: Destination ID not provided.";
     }
 }

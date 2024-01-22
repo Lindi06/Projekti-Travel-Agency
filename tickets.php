@@ -88,7 +88,7 @@ $destinations = $ticketRepository->getAvailableDestinations();
 <body>
 <div class="container">
     <h1>Ticket Booking</h1>
-    
+
 
     <form action="process_ticket_booking.php" class="booking-form" method="post">
         <label for="destination">Select Destination:</label>
@@ -112,6 +112,3 @@ $destinations = $ticketRepository->getAvailableDestinations();
     </div>
 </body>
 </html>
-
-
-

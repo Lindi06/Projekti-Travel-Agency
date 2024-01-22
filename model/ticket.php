@@ -41,7 +41,6 @@ class Ticket {
     public function getDestinationId() {
         return $this->destination_id;
     }
-    
 
 }
 
