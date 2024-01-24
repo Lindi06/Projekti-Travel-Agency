@@ -7,7 +7,7 @@ class destinationrespository {
     private $connection;
 
     public function __construct() {
-        $conn = new DatabaseConnection;
+        $conn = new databaseconnection;
         $this->connection = $conn->startConnection();
     }
 

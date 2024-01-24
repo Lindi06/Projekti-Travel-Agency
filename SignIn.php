@@ -1,4 +1,5 @@
 <?php
+session_start();
 include_once 'C:\xampp\htdocs\Projekti-Travel-Agency\Projekti-Travel-Agency\model\user.php';
 include_once 'C:\xampp\htdocs\Projekti-Travel-Agency\Projekti-Travel-Agency\model\userrespository.php';
 
@@ -8,21 +9,31 @@ if (isset($_POST['signin'])) {
 
     $userRepository = new userrespository();
 
-    $loggedInUser = $userRepository->checkLogin($email, $password);
+    $userData = $userRepository->checkLogin($email, $password);
 
-    if ($loggedInUser) {
-        session_start();
-        $_SESSION['emri'] =$loggedInUser->getUsername();
-        $_SESSION['role']=$loggedInUser->getRole();
-        header("location:index.php");
+    if ($userData) {
+        $loggedInUser = new user(
+            $userData['emri'],
+            $userData['mbiemri'],
+            $userData['email'],
+            $userData['datelindja'],
+            $userData['username'],
+            $userData['passwordi'],
+            $userData['role'],
+            $userData['joined_date']
+        );
+
+        $_SESSION['loggedInUser'] = $loggedInUser;
+        $_SESSION['emri'] = $loggedInUser->getUsername();
+        $_SESSION['role'] = $loggedInUser->getRole();
+        
+        header('Location: index.php');
         exit;
     } else {
         echo "Invalid email or password";
     }
 }
-
 ?>
-
 
 
 

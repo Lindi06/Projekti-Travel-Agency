@@ -16,7 +16,7 @@ $destinations = $ticketRepository->getAvailableDestinations();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Flight Booking System</title>
     <style>
-     body {
+   body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
@@ -24,52 +24,47 @@ $destinations = $ticketRepository->getAvailableDestinations();
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background-color:rgba(173, 216, 230, 0.3);
-    display: flex;
+    background-color: rgba(173, 216, 230, 0.3);
     flex-direction: column;
- 
-  }
+}
 
-  .container {
-    width: 500px;
+.container {
+    width: 90%; 
+    max-width: 500px; 
     background-color: lightblue;
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-
     text-align: center;
+}
 
-
-
-  }
-
-  .booking-form {
+.booking-form {
     display: flex;
     padding: 20px;
     flex-direction: column;
-  }
+}
 
-  .form-group {
+.form-group {
     margin-bottom: 15px;
-  }
+}
 
-  label,h1 {
+label, h1 {
     font-weight: bold;
     color: #2980b9;
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-  }
+}
 
-
-  input[type="text"],
-  input[type="date"],
-  input[type="number"],
-  select {
+input[type="text"],
+input[type="date"],
+input[type="number"],
+select {
     padding: 8px;
     width: 100%;
     margin-top: 5px;
-  }
+    box-sizing: border-box; 
+}
 
-  button {
+button {
     background-color: #3498db;
     color: #fff;
     border: none;
@@ -78,11 +73,12 @@ $destinations = $ticketRepository->getAvailableDestinations();
     cursor: pointer;
     width: 100%;
     margin-top: 10px;
-  }
+}
 
-  button:hover {
+button:hover {
     background-color: #2980b9;
-  }
+}
+
     </style>
 </head>
 <body>

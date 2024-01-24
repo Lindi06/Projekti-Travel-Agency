@@ -140,9 +140,12 @@ $destinations = $destinationrepository->getAllDestinations();
                     </div>
                     <div class="btns">
                         <form action="destinations.php" method="post">
-                        <?php if (isset($_SESSION['role']) && strtolower($_SESSION['role']) === 'user') { ?>
-                            <a class="btn-primary" href="tickets.php">BOOK NOW</a>
-                            <?php } ?>
+                     
+                           <?php if (isset($_SESSION['role']) && strtolower($_SESSION['role']) !== 'admin') { ?>
+                              <a class="btn-primary" href="tickets.php">BOOK NOW</a>
+                           <?php } ?>
+
+
                             <?php if (isset($_SESSION['role']) && strtolower($_SESSION['role']) === 'admin') { ?>
                                 <a class="btn-third" href='EditDestination.php?id=<?php echo $destination['id']; ?>'>Edit</a>
                                 <a class="btn-second" href='deleteDestination.php?id=<?php echo $destination['id']; ?>'>Delete</a>

@@ -89,7 +89,7 @@ $users=$userRepository->getAllUsers();
 </head>
 <body>
     <div class="container">
-        <h1>Manage Reservations</h1>
+        <h1>Manage Users</h1>
         <table>
             <thead>
                 <tr>

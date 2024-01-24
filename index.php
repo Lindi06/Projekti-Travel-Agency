@@ -64,7 +64,7 @@ if (isset($_SESSION['role'])) {
                 <li><a href="">Home</a></li>
                 <li><a href="tickets.php">Tickets</a></li>
                 <li><a href="AboutUs.php">About us</a></li>
-                <li><a href="">Blog</a></li>
+                <li><a href="blog.php">Blog</a></li>
                 <li><a href="destinations.php">Destinations</a></li>
 
                <?php if (!$loggedIn) { ?>
@@ -162,7 +162,7 @@ if (isset($_SESSION['role'])) {
           <input type="date" name="checkout" id="checkout" required class="input-field">
         </div>
 
-        <button type="submit" class="btn btn-secondary">Inquire now</button>
+        <a href="tickets.php" class="btn btn-secondary">Inquire now</button>
 
       </form>
 

@@ -1,5 +1,5 @@
 <?php
-class DatabaseConnection {
+class databaseconnection {
     private $servername = "localhost";
     private $username = "root";
     private $password = "";

@@ -67,8 +67,7 @@ nav ul li a{
 }
 
 nav ul li a:hover{
-    background-color: #2980b9;
-    color: white;
+    color: lightblue;
     padding: 6px;
     border-radius: 3px;
 }
@@ -141,19 +140,41 @@ button:hover{
   
 
 
+#list {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
 
+@media only screen and (max-width: 700px) {
+    #list {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 12vh;
+        left: 0;
+        width: 100%;
+        background-color: white;
+        box-shadow: 1px 1px 5px #5F6F52;
+        z-index: 1000;
+    }
 
+    #list.show {
+        display: flex;
+    }
 
+    #list ul {
+        width: 100%;
+        text-align: center;
+    }
 
+    #list ul li {
+        margin: 10px 0;
+    }
 
-   
-   
-
-
-
-
-@media only screen and (max-width:700px) {
-
+    #menu-icon {
+        display: block;
+    }
     .landpage{
         height: 70vh;
     }
@@ -194,9 +215,21 @@ button:hover{
         
     }
 
+}
+
+
+
+
+   
    
 
-    }
+
+
+
+
+   
+
+    
     
 
 
@@ -249,7 +282,7 @@ button:hover{
         margin-bottom: 15px;
      }
       
-      .tour-search .btn {
+      .tour-search a {
         width: 200px;
         background: transparent;
         padding: 10px 15px;

@@ -8,7 +8,7 @@ class ticketRepository{
 
     public function __construct()
     {
-        $conn=new DatabaseConnection();
+        $conn=new databaseconnection();
         $this->connection=$conn->startConnection();
         
     }
