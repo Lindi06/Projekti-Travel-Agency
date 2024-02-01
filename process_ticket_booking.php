@@ -21,7 +21,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 
         $ticketRepository->insertTicket($ticket);
-        header("Location:destinations.php");
+        echo "<script> alert ('Booked Succesfully')alert </script>";
+        header("Location:index.php");
     } else {
 
         echo "Error: Destination ID not provided.";

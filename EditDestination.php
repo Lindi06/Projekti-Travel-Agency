@@ -73,10 +73,10 @@ $destination = $destinationRepository->getDestinationById($destinationId);
     <h3>Edit Destination</h3>
     <form action="" method="post" enctype="multipart/form-data">
         <input type="text" name="id" value="<?=$destination['id']?>" readonly> <br> <br>
-        <input type="text" name="emri" value="<?=$destination['emri']?>">
-        <input type="text" name="location" value="<?=$destination['location']?>">
-        <input type="text" name="description" value="<?=$destination['description']?>"> <br> <br>
-        <input type="number" name="price" value="<?=$destination['price']?>"> <br> <br>
+        <input type="text" placeholder="emri" name="emri" value="<?=$destination['emri']?>">
+        <input type="text" placeholder="location" name="location" value="<?=$destination['location']?>">
+        <input type="text" placeholder="description" name="description" value="<?=$destination['description']?>"> <br> <br>
+        <input type="number" placeholder="price" name="price" value="<?=$destination['price']?>"> <br> <br>
    
 
         <input type="submit" name="editBtn" value="Save"> <br> <br>

@@ -1,6 +1,6 @@
 <?php
 include_once 'C:\xampp\htdocs\Projekti-Travel-Agency\Projekti-Travel-Agency\dbConnect.php';
-include_once 'blog.php';
+
 
 class blogRepository{
     private $connection;

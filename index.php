@@ -14,12 +14,6 @@ if (isset($_SESSION['emri'])) {
     
 }
 
-if (isset($_POST["logout"])) {
-    session_destroy();
-    header("Location: index.php");
-    exit;
-}
-
 
 if (isset($_SESSION['role'])) {
   $_SESSION['role']= $user_role = $_SESSION['role'];
@@ -51,6 +45,7 @@ if (isset($_SESSION['role'])) {
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500&family=Pacifico&family=REM:ital,wght@1,300&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
 </head>
 
 <body>
@@ -64,7 +59,7 @@ if (isset($_SESSION['role'])) {
                 <li><a href="">Home</a></li>
                 <li><a href="tickets.php">Tickets</a></li>
                 <li><a href="AboutUs.php">About us</a></li>
-                <li><a href="blog.php">Blog</a></li>
+                <li><a href="blogs.php">Blog</a></li>
                 <li><a href="destinations.php">Destinations</a></li>
 
                <?php if (!$loggedIn) { ?>
@@ -77,38 +72,40 @@ if (isset($_SESSION['role'])) {
 <?php } ?>
 
 
-                <?php if ($loggedIn) { ?>
-                    <li><a href="profile.php">
-                            <i style="background-color: grey; border-radius:50%; padding:8px; color:white" class="fa fa-user"></i>  
-                            <?php 
-                            if($loggedIn){
-                              echo  $_SESSION["emri"]; 
-                            }
-                            else if($loggedIn==false){
-                              echo "<h4> no user </h4>";
+<?php if ($loggedIn) { ?>
+    <li>
+        <div class="dropdown">
+            <div class="dropbtn">
+                <i style="background-color: grey; border-radius:50%; padding:8px; color:white" class="fa fa-user"></i>
+                <?php 
+                if($loggedIn){
+                    echo $_SESSION["emri"]; 
+                } else {
+                    echo "<h4> no user </h4>";
+                } ?> 
+            </div>
+                          
+            <div class="dropdown-content">
+                <a href="profile.php">Profile</a>
+                <a href="logout.php">Logout</a> 
+            </div>
+        </div>
+    </li>
+<?php } ?>
 
-                            }
-                            
-                            ?>
-                     
-                        </a>
-                    </li>
-                <?php } ?>
-              
-              
-                <?php if ($loggedIn) { ?>
-                    <li >
-                        <form method="post" action="index.php">
-                            <button type="submit"  name="logout" style="font-weight: bolder; font-size:15px">Log out</button>
-                        </form>
-                    </li>
-                <?php } ?>
+
+  
+
 
 
                
             </ul>
-            <img src="photo/menuicon.png" id="menu-icon" onclick="menu()">
+
+  
+          
             </nav>
+
+         
             
           
         </div>
@@ -162,7 +159,7 @@ if (isset($_SESSION['role'])) {
           <input type="date" name="checkout" id="checkout" required class="input-field">
         </div>
 
-        <a href="tickets.php" class="btn btn-secondary">Inquire now</button>
+        <button onclick="tickets()" class="tickets-link">Inquire now</button>
 
       </form>
 
@@ -290,7 +287,7 @@ if (isset($_SESSION['role'])) {
 
       </ul>
 
-      <button class="btn btn-primary">More destintion</button>
+      <button>More destintion</button>
 
     </div>
   </section>
@@ -520,7 +517,18 @@ if (isset($_SESSION['role'])) {
 </div>
 
 
-<script src="script.js"></script>
+<script src="script.js">
+  
+document.addEventListener('DOMContentLoaded', function() {
+    var menuImg = document.querySelector('.menu-img');
+    var body = document.body;
+
+    menuImg.addEventListener('click', function() {
+        body.classList.toggle('show-sidebar');
+    });
+});
+
+</script>
 
 
 

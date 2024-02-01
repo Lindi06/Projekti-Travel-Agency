@@ -26,13 +26,18 @@ if (isset($_POST['signin'])) {
         $_SESSION['loggedInUser'] = $loggedInUser;
         $_SESSION['emri'] = $loggedInUser->getUsername();
         $_SESSION['role'] = $loggedInUser->getRole();
+
+
+
+ 
+
+}
+
         
         header('Location: index.php');
         exit;
-    } else {
-        echo "Invalid email or password";
-    }
-}
+    } 
+
 ?>
 
 
@@ -46,6 +51,9 @@ if (isset($_POST['signin'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="StyleOfSignIn.css">
     <title>Login In</title>
+    <style>
+       
+    </style>
 </head>
 
 <body>

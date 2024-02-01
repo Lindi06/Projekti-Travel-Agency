@@ -136,6 +136,7 @@ $destinations = $destinationrepository->getAllDestinations();
                             Location: <?php echo $destination['location']; ?><br><br>
                             Description: <?php echo $destination['description']; ?><br><br>
                             Price: $<?php echo $destination['price']; ?><br>
+                            Added by: <?php echo $destination['user_id']; ?>
                         </p>
                     </div>
                     <div class="btns">

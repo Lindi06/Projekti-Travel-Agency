@@ -11,24 +11,29 @@ class destinationrespository {
         $this->connection = $conn->startConnection();
     }
 
-
-    public function insertDestination($destination){
-
-        $conn=$this->connection;
+    public function insertDestination($destination) {
+        $conn = $this->connection;
+        session_start();
     
+
       
+    
+     
         $name = $destination->getEmri();
         $location = $destination->getLocation();
         $description = $destination->getDescription();
         $price = $destination->getPrice();
         $photo = $destination->getPhoto();
-    
-        $sql = "INSERT INTO destinations (emri, location, description, price, photo) VALUES (?,?,?,?,?)";
-        $statement=$conn->prepare($sql);
-    
-        $statement->execute([$name,$location,$description,$price,$photo]);
-    
+
+        $username = $_SESSION['emri'];
+
+
+$sql = "INSERT INTO destinations (emri, location, description, price, photo, user_id) VALUES (?, ?, ?, ?, ?, ?)";
+$statement = $conn->prepare($sql);
+$statement->execute([$name, $location, $description, $price, $photo, $username]);
+
     }
+    
     
     function getAllDestinations(){
         $conn = $this->connection;

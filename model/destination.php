@@ -6,6 +6,7 @@ class destination{
     private $description;
     private $price;
     private $photo;
+ 
 
     public function __construct($emri = '', $location = '', $description = '', $price = 0, $photo = ''){
    
@@ -14,6 +15,7 @@ class destination{
         $this->description=$description;
         $this->price=$price;
         $this->photo=$photo;
+  
     }
 
     public function getId()
@@ -65,6 +67,8 @@ class destination{
     public function setPhoto($photo){
         $this->photo=$photo;
     }
+
+
 
 
    

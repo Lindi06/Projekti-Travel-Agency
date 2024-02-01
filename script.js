@@ -1,4 +1,10 @@
 function toggleMenu() {
-    var menuList = document.getElementById("list");
+    let menuList = document.getElementById("list");
     menuList.classList.toggle("show");
 }
+
+
+function tickets(){
+    window.location.href="tickets.php";
+}
+

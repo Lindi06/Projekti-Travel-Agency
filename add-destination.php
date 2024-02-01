@@ -25,29 +25,10 @@ if (isset($_POST['submit'])) {
 function uploadPhoto()
 {
     $targetDirectory = "uploads/";
-    $originalFileName = basename($_FILES["photo"]["name"]);
-    $targetFile = $targetDirectory . uniqid() . '_' . $originalFileName;
-
-    // Check if it's an image
-    if (!getimagesize($_FILES["photo"]["tmp_name"])) {
-        echo "Error: The uploaded file is not an image.";
-        return null;
-    }
-
-    // Check the file format
-    $allowedFormats = array("jpg", "jpeg", "png");
-    $imageFileType = strtolower(pathinfo($targetFile, PATHINFO_EXTENSION));
-    if (!in_array($imageFileType, $allowedFormats)) {
-        echo "Error: Only JPG, JPEG, and PNG files are allowed.";
-        return null;
-    }
-
-    // Check for file existence and generate a new name if necessary
-    while (file_exists($targetFile)) {
-        $targetFile = $targetDirectory . uniqid() . '_' . $originalFileName;
-    }
-
-    // Move the uploaded file to the target directory
+    $originalFileName = $_FILES["photo"]["name"];
+    $targetFile = $targetDirectory . basename($originalFileName);
+    
+  
     if (move_uploaded_file($_FILES["photo"]["tmp_name"], $targetFile)) {
         echo "File uploaded successfully!";
         return $targetFile;
@@ -55,8 +36,8 @@ function uploadPhoto()
         echo "Error: There was an error uploading your file.";
         return null;
     }
+    
 }
-
 ?>
 
 

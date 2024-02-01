@@ -12,9 +12,9 @@ if (isset($_POST['signup'])){
     $username=$_POST['username'];
     $password=$_POST['password'];
     $role=null;
-    $joined_date = date('Y-m-d'); 
+    $joined_date = date('Y-m-d');
+ 
     
-
     $user = new user($emri, $mbiemri, $email, $dataLindjes, $username, $password,$role, $joined_date);
     
      
@@ -38,7 +38,7 @@ if (isset($_POST['signup'])){
 </head>
 
 <body>
-    <div class="container" id="container">
+    <div class="container" id="container" style="padding: 100px;">
         <div class="form-container sign-up">
             <form action="SignUp.php" method="Post">
                 <h1>Create Account</h1>
@@ -84,7 +84,7 @@ let nameRegex = /^[a-zA-Z]+$/;
 function validateSignUp(){
         let name=document.getElementById('sign-up-name').value;
         let email = document.getElementById('sign-up-email').value;
-    let password = document.getElementById('sign-up-password').value;
+        let password = document.getElementById('sign-up-password').value;
 
     if(!nameRegex.test(name)){
         alert("name invalid")

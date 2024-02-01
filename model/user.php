@@ -9,6 +9,7 @@ class user{
     private $passwordi;
     private $role;
     private $joined_date;
+  
 
 
     public function __construct($emri, $mbiemri, $emaili, $datelindja, $username, $passwordi, $role, $joined_date){
@@ -20,8 +21,11 @@ class user{
         $this->username=$username;
         $this->passwordi=$passwordi;
         $this->joined_date=$joined_date;
-    }
     
+    }
+
+
+
     public function getEmri(){
         return $this->Emri;
     }
@@ -81,6 +85,7 @@ class user{
         $this->joined_date=$jd;
     }
 
+  
 
 
 

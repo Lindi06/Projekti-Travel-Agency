@@ -21,7 +21,7 @@ class userrespository {
         $password = $user->getPasswordi();
         $joined_date = $user->getJoinedDate();
 
-        $sql = "INSERT INTO users (emri, mbiemri, email, datelindja, username, passwordi, joined_date) VALUES (?, ?, ?, ?, ?, ?, ?)";
+        $sql = "INSERT INTO users (emri, email, datelindja, username, passwordi, joined_date) VALUES (?, ?, ?, ?, ?, ?, ?)";
         $statement = $conn->prepare($sql);
         $statement->execute([$emri,$mbiemri,$emaili,$dataelindjes,$username,$password,$joined_date]);
 
@@ -86,25 +86,14 @@ class userrespository {
     
         return $result;
     }
-    public function getRole($r) {
-        $conn = $this->connection;
+ 
 
-        $sql = "SELECT * FROM users WHERE role=?";
-        $statement = $conn->prepare($sql);
-        $statement->bindParam(1, $r);
-        $statement->execute();
 
-        $result = $statement->fetch(PDO::FETCH_ASSOC);
-
-        return $result;
-    }
-
-   // In userrespository.php
 
    public function getLoggedInUser() {
-    session_start(); // Ensure the session is started
+    session_start(); 
 
-    if (isset($_SESSION['loggedInUser']) && is_object($_SESSION['loggedInUser'])) {
+    if (isset($_SESSION['loggedInUser']) ) {
         return $_SESSION['loggedInUser'];
     }
 

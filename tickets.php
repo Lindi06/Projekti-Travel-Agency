@@ -103,7 +103,7 @@ button:hover {
         <label for="number_tickets">Number of Tickets:</label>
         <input type="number" id="number_tickets" name="number_tickets" required>
 
-        <button name="submit" type="submit">Submit</button>
+        <button name="submit" type="submit" >Book Now</button>
     </form>
     </div>
 </body>
