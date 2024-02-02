@@ -97,7 +97,7 @@ if(isset($_POST['editBtn'])){
     $password = $_POST['password'];
 
     $userRepository->updateUser($id, $name, $surname, $email, $datelindja, $username, $password);
-    header("location:dashboard.php");
+    header("Location:ManageUsers.php");
 }
 
 ?>

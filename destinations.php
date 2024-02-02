@@ -131,12 +131,12 @@ $destinations = $destinationrepository->getAllDestinations();
                 <div class="card">
                     <img src="<?php echo $destination['photo']; ?>" alt="Destination Image">
                     <div class="card-body">
-                        <h5><?php echo $destination['emri']; ?></h5>
+                        <h5><?php echo $destination['emri']; ?>  <?php echo "Tour" ?> </h5>
                         <p>
-                            Location: <?php echo $destination['location']; ?><br><br>
+                            Location: <?php echo $destination['location'];?><br><br>
                             Description: <?php echo $destination['description']; ?><br><br>
                             Price: $<?php echo $destination['price']; ?><br>
-                            Added by: <?php echo $destination['user_id']; ?>
+                            Published by: <?php echo $destination['user_id']; ?>
                         </p>
                     </div>
                     <div class="btns">

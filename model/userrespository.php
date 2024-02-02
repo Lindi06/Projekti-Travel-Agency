@@ -21,7 +21,7 @@ class userrespository {
         $password = $user->getPasswordi();
         $joined_date = $user->getJoinedDate();
 
-        $sql = "INSERT INTO users (emri, email, datelindja, username, passwordi, joined_date) VALUES (?, ?, ?, ?, ?, ?, ?)";
+        $sql = "INSERT INTO users (emri,mbiemri, email, datelindja, username, passwordi, joined_date) VALUES (?, ?, ?, ?, ?, ?, ?)";
         $statement = $conn->prepare($sql);
         $statement->execute([$emri,$mbiemri,$emaili,$dataelindjes,$username,$password,$joined_date]);
 

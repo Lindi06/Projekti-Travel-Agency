@@ -9,7 +9,7 @@ $userRepository = new userrespository();
 
 $userRepository->deleteUser($userId);
 
-header("location:dashboard.php");
+
 
 
 ?>
