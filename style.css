@@ -162,7 +162,7 @@ button:hover {
 
 @media (max-width: 768px) {
     .landpage {
-        height: 40vh;
+        height: 50vh;
     }
 
     .navbar{

@@ -3,11 +3,9 @@ class databaseconnection {
     private $servername = "localhost";
     private $username = "root";
     private $password = "";
-    // emri i databes per Dorajetin
    private $dbname = "projektita";
    
-   // emri i databazes per Lindin
-   //private $dbname = "user";
+
     private $conn;
 
     public function startConnection() {

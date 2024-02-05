@@ -84,9 +84,14 @@ class userrespository {
     
         $result = $statement->fetch(PDO::FETCH_ASSOC);
     
+        if (!$result) {
+             return false;
+        }
+    
+  
         return $result;
     }
- 
+    
 
 
 
