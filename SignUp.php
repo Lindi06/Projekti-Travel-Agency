@@ -14,17 +14,17 @@ if (isset($_POST['signup'])) {
     $joined_date = date('Y-m-d');
 
     if (!preg_match("/^[a-zA-Z]+$/", $emri)) {
-        echo "Invalid name format";
+        echo "<script> console.log('name invalid') </script>";
         exit;
     }
 
     if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-        echo "Invalid email format";
+        echo "<script> console.log('email invalid') </script>";
         exit;
     }
 
     if (!preg_match("/^(?=.*[a-zA-Z])(?=.*\d)(?=.*[!@#$%^&*()_+])[A-Za-z\d!@#$%^&*()_+]{8,}$/", $password)) {
-        echo "Invalid password format";
+        echo "<script> console.log('password invalid') </script>";
         exit;
     }
 
@@ -99,18 +99,18 @@ function validateSignUp(){
         let password = document.getElementById('sign-up-password').value;
 
     if(!nameRegex.test(name)){
-        alert("name invalid")
-        return;
+       console.log('name invalid');
+        return false;
     }
 
     if (!emailRegex.test(email)) {
-        alert('email invalid')
-        return;
+        console.log('email invalid');
+        return false;
     }
 
     if (!passwordRegex.test(password)) {
-        alert('password invalid')
-        return;
+        console.log('password invalid');
+        return false;
     }
 
     else{
